@@ -25,7 +25,7 @@ export default function PhotoFrame({
       type="button"
       onClick={() => onOpen?.(shot)}
       initial={{ opacity: 0, y: 40, rotate: tilt * 2.2, scale: 0.96 }}
-      animate={inView ? { opacity: 1, y: 0, rotate: tilt, scale: 1 } : undefined}
+      animate={inView ? { opacity: 1, y: 0, rotate: tilt, scale: 1 } : { opacity: 0, y: 40, rotate: tilt * 2.2, scale: 0.96 }}
       transition={{ duration: 0.7, delay: (index % 4) * 0.08, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ rotate: 0, scale: 1.03, zIndex: 10 }}
       className="frame-photo group block w-full cursor-zoom-in text-left"
