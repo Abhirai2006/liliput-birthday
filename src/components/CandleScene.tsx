@@ -55,7 +55,7 @@ function Cake({ lit }: { lit: boolean }) {
         <meshStandardMaterial color="#f7d9e3" roughness={0.6} />
       </mesh>
       {/* cream ring */}
-      <mesh position={[0, 0.72, 0]}>
+      <mesh position={[0, 0.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.3, 0.09, 16, 64]} />
         <meshStandardMaterial color="#fff6ec" roughness={0.4} />
       </mesh>
@@ -64,7 +64,7 @@ function Cake({ lit }: { lit: boolean }) {
         <cylinderGeometry args={[0.82, 0.9, 0.56, 64]} />
         <meshStandardMaterial color="#f2c3d6" roughness={0.6} />
       </mesh>
-      <mesh position={[0, 1.3, 0]}>
+      <mesh position={[0, 1.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.82, 0.07, 16, 64]} />
         <meshStandardMaterial color="#fff6ec" roughness={0.4} />
       </mesh>
