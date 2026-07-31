@@ -79,6 +79,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "robots", content: "noindex, nofollow" },
       { name: "theme-color", content: "#0d1022" },
+      { title: "For Subbi — 18 September" },
+      { property: "og:title", content: "For Subbi — 18 September" },
+      { name: "twitter:title", content: "For Subbi — 18 September" },
+      { name: "description", content: "A birthday page made for Aishwarya M Teli — photos, videos and a candle to blow out, sealed until 18 September, 00:00 IST." },
+      { property: "og:description", content: "A birthday page made for Aishwarya M Teli — photos, videos and a candle to blow out, sealed until 18 September, 00:00 IST." },
+      { name: "twitter:description", content: "A birthday page made for Aishwarya M Teli — photos, videos and a candle to blow out, sealed until 18 September, 00:00 IST." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/194d471f-7072-4cab-8de9-b2e136fef557/id-preview-e0b987d7--490f956a-615e-434c-ba79-71cf75646a64.lovable.app-1785493151826.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/194d471f-7072-4cab-8de9-b2e136fef557/id-preview-e0b987d7--490f956a-615e-434c-ba79-71cf75646a64.lovable.app-1785493151826.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       {

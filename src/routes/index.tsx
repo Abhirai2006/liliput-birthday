@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "For Subbi — 18 September" },
       {
         property: "og:description",
-        content: "Sealed until midnight on 18 September. Made for Aishwarya.",
+        content: "A birthday page made for Aishwarya M Teli — photos, videos and a candle to blow out, sealed until 18 September, 00:00 IST.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
