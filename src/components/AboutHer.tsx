@@ -6,7 +6,7 @@ const LINES = [
   "Aishwarya M Teli. Ganiger.",
   "Subbi to the people who love her.",
   "Lilliput to exactly one person, because five feet is five feet.",
-  "And that one person she decided to call Dad.",
+  "And that one person she decided to call Pappa.",
 ];
 
 export default function AboutHer({ onOpen }: { onOpen: (s: typeof idCard) => void }) {

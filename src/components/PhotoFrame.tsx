@@ -17,7 +17,7 @@ export default function PhotoFrame({
 }) {
   const ref = useRef<HTMLButtonElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const tilt = ((index % 5) - 2) * 1.6;
+  const tilt = ((index % 5) - 2) * 1.1;
 
   return (
     <motion.button
@@ -40,7 +40,7 @@ export default function PhotoFrame({
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
           />
         ) : (
           <img
