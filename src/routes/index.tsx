@@ -78,7 +78,7 @@ function BirthdayPage() {
         <StarField density={0.9} />
       </div>
 
-      <main>
+      <main className="overflow-x-clip">
         <section className="relative flex min-h-screen flex-col items-center justify-center px-5 py-16 text-center">
           <motion.p
             initial={{ opacity: 0 }}
