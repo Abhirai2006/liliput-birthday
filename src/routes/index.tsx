@@ -8,6 +8,7 @@ import LockScreen from "@/components/LockScreen";
 import Chapter from "@/components/Chapter";
 import AboutHer from "@/components/AboutHer";
 import { DaaSection, UsSection } from "@/components/PeopleSections";
+import HeartDraw from "@/components/HeartDraw";
 import Letter from "@/components/Letter";
 import Lightbox from "@/components/Lightbox";
 import { chapters, type Shot } from "@/lib/media";
@@ -118,6 +119,7 @@ function BirthdayPage() {
 
         <DaaSection onOpen={setShot} />
         <UsSection onOpen={setShot} />
+        <HeartDraw />
         <Letter />
 
         <footer className="px-5 pb-16 text-center">

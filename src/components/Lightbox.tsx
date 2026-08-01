@@ -37,6 +37,7 @@ export default function Lightbox({ shot, onClose }: { shot: Shot | null; onClose
         {shot.kind === "video" ? (
           <video
             src={shot.src}
+            poster={shot.poster}
             className="mx-auto max-h-[74vh] w-auto rounded-md"
             autoPlay
             loop

@@ -34,6 +34,7 @@ export default function PhotoFrame({
         {shot.kind === "video" ? (
           <video
             src={shot.src}
+            poster={shot.poster}
             className="block h-auto w-full"
             autoPlay
             loop

@@ -1,6 +1,7 @@
 export type Shot = {
   src: string;
   kind: "photo" | "video";
+  poster?: string;
   caption: string;
   /** portrait | landscape — used to pick the frame, never to squash the image */
   orient: "p" | "l";
@@ -20,11 +21,11 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
     shots: [
       { src: "/media/her-03.jpg", kind: "photo", caption: "That half-smile she does when she's pretending she isn't posing.", orient: "p" },
       { src: "/media/her-05.jpg", kind: "photo", caption: "Sunkissed, and very aware of it.", orient: "p" },
-      { src: "/media/v-look.mp4", kind: "video", caption: "Six seconds of nothing happening. Watched more times than I'll admit.", orient: "p" },
+      { src: "/media/v-look.mp4", poster: "/media/v-look.jpg", kind: "video", caption: "Six seconds of nothing happening. Watched more times than I'll admit.", orient: "p" },
       { src: "/media/her-04.jpg", kind: "photo", caption: "Hearts in the hair. Somebody's in a good mood.", orient: "p" },
       { src: "/media/her-12.jpg", kind: "photo", caption: "Mid-sentence, mid-story, mid-complaint. Peak Subbi.", orient: "p" },
       { src: "/media/her-14.jpg", kind: "photo", caption: "Lying down, phone up, world ignored.", orient: "p" },
-      { src: "/media/v-soft.mp4", kind: "video", caption: "Earphones in. Do not disturb.", orient: "p" },
+      { src: "/media/v-soft.mp4", poster: "/media/v-soft.jpg", kind: "video", caption: "Earphones in. Do not disturb.", orient: "p" },
       { src: "/media/her-15.jpg", kind: "photo", caption: "This one is my favourite and she'll never know why.", orient: "p" },
       { src: "/media/her-09.jpg", kind: "photo", caption: "Face pack on, dignity off. Still laughing.", orient: "p" },
       { src: "/media/her-11.jpg", kind: "photo", caption: "Caught doing something completely useless. Delighted about it.", orient: "p" },
@@ -39,7 +40,7 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/dress-01.jpg", kind: "photo", caption: "Mirror check number four hundred.", orient: "p" },
       { src: "/media/dress-02.jpg", kind: "photo", caption: "Green suits her. She knows. That's why the pose.", orient: "p" },
       { src: "/media/dress-03.jpg", kind: "photo", caption: "White dress, small shoes, big attitude — all five feet of it.", orient: "p" },
-      { src: "/media/v-mirror.mp4", kind: "video", caption: "The final check before leaving. There is always a final check.", orient: "p" },
+      { src: "/media/v-mirror.mp4", poster: "/media/v-mirror.jpg", kind: "video", caption: "The final check before leaving. There is always a final check.", orient: "p" },
       { src: "/media/her-02.jpg", kind: "photo", caption: "\"This one?\" Yes. That one.", orient: "p" },
       { src: "/media/her-10.jpg", kind: "photo", caption: "On a call, dressed up anyway.", orient: "p" },
     ],
@@ -50,7 +51,7 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
     shots: [
       { src: "/media/sing-01.jpg", kind: "photo", caption: "Sunset, hand up, singing to nobody.", orient: "p" },
       { src: "/media/sing-02.jpg", kind: "photo", caption: "Lofi in the ears, everything else on mute.", orient: "p" },
-      { src: "/media/v-happy.mp4", kind: "video", caption: "\"Happy vibes\" — her caption. Rare and worth keeping.", orient: "p" },
+      { src: "/media/v-happy.mp4", poster: "/media/v-happy.jpg", kind: "video", caption: "\"Happy vibes\" — her caption. Rare and worth keeping.", orient: "p" },
     ],
   },
   {
@@ -58,7 +59,7 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
     note: "Give her a mall, a bus, and a whole day. She'll come back with three bags and one story you'll hear four times.",
     shots: [
       { src: "/media/shopping-1.jpg", kind: "photo", caption: "Garuda Mall. Reporting live from her natural habitat.", orient: "p" },
-      { src: "/media/v-ride.mp4", kind: "video", caption: "\"Thanks for the dream ridee.\" Pink kurta, open road.", orient: "l" },
+      { src: "/media/v-ride.mp4", poster: "/media/v-ride.jpg", kind: "video", caption: "\"Thanks for the dream ridee.\" Pink kurta, open road.", orient: "l" },
       { src: "/media/her-07.jpg", kind: "photo", caption: "Sitting on a ledge somewhere, thinking about something.", orient: "p" },
       { src: "/media/her-08.jpg", kind: "photo", caption: "College ID still on. Day one energy.", orient: "p" },
       { src: "/media/her-13.jpg", kind: "photo", caption: "Old pictures, older versions of her. Same face.", orient: "p" },
@@ -71,7 +72,7 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
     shots: [
       { src: "/media/friends-1.jpg", kind: "photo", caption: "Sunny day, three of them, one camera.", orient: "p" },
       { src: "/media/family-1.jpg", kind: "photo", caption: "Home. Where the laughing is loudest.", orient: "p" },
-      { src: "/media/v-friend.mp4", kind: "video", caption: "Twenty-two seconds of absolute nonsense.", orient: "l" },
+      { src: "/media/v-friend.mp4", poster: "/media/v-friend.jpg", kind: "video", caption: "Twenty-two seconds of absolute nonsense.", orient: "l" },
     ],
   },
 ];
