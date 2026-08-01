@@ -40,11 +40,9 @@ export default function HeartDraw() {
     const scale = Math.min(w / 40, h / 40);
     const cx = w / 2;
     const cy = h / 2 + 4 * scale;
-    const origin = { x: cx, y: cy - 40 * (scale / 15) * 0.0 - 40 * 0 }; // centre of the rays
-    origin.y = cy - 40 * (scale / 15) * 0 - 0;
     // rays radiate from a point slightly above the heart's centre
     const ox = cx;
-    const oy = cy - 40 * (scale / 15) * 0 - 12 * (scale / 15) * 0 - 0.28 * h * 0;
+    const oy = cy - 3 * scale;
 
     const point = (i: number) => {
       const a = (i * Math.PI * 2) / RAYS;
@@ -75,11 +73,11 @@ export default function HeartDraw() {
 
     const drawRay = (n: number) => {
       const p = point(n);
-      const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      const color = COLORS[Math.floor(Math.random() * COLORS.length)]!;
       ctx.strokeStyle = color;
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(ox, oy || cy - 0);
+      ctx.moveTo(ox, oy);
       ctx.lineTo(p.x, p.y);
       ctx.stroke();
       star(p.x, p.y, color);
