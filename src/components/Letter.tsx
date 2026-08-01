@@ -30,7 +30,7 @@ export default function Letter() {
             they're his own.
           </p>
           <p className="text-accent">Stay exactly this soft. I'll handle the rest.</p>
-          <p className="text-right text-foreground">— Dad</p>
+          <p className="text-right text-foreground">— Pappa</p>
         </div>
       </motion.div>
     </section>

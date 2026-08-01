@@ -47,9 +47,9 @@ export function UsSection({ onOpen }: { onOpen: (s: Shot) => void }) {
           <PhotoFrame shot={usShot} index={1} onOpen={onOpen} />
         </motion.div>
         <div>
-          <p className="text-[0.65rem] uppercase tracking-[0.4em] text-primary">Dad &amp; Lilliput</p>
+          <p className="text-[0.65rem] uppercase tracking-[0.4em] text-primary">Pappa &amp; Lilliput</p>
           <h2 className="mt-4 text-4xl leading-tight sm:text-5xl">
-            You call me Dad.
+            You call me Pappa.
             <span className="block italic text-accent">I call you Lilliput.</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
