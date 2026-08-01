@@ -37,12 +37,18 @@ export const Route = createFileRoute("/")({
   component: BirthdayPage,
 });
 
+/** Seal temporarily lifted at his request — flip to true to re-lock until 18 Sep, 00:00 IST. */
+const SEAL_ENABLED = false;
+
 function BirthdayPage() {
-  const [state, setState] = useState<"loading" | "locked" | "open">("loading");
+  const [state, setState] = useState<"loading" | "locked" | "open">(
+    SEAL_ENABLED ? "loading" : "open",
+  );
   const [lit, setLit] = useState(true);
   const [shot, setShot] = useState<Shot | null>(null);
 
   useEffect(() => {
+    if (!SEAL_ENABLED) return;
     setState(msUntilBirthday() <= 0 || hasPreviewKey() ? "open" : "locked");
   }, []);
 
