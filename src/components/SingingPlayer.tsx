@@ -15,13 +15,15 @@ export default function SingingPlayer() {
 
   useEffect(() => {
     const el = audioRef.current;
-    if (!el || current === null) return;
-    el.src = songs[current].src;
+    const track = current === null ? undefined : songs[current];
+    if (!el || !track) return;
+    el.src = track.src;
     el.play().then(
       () => setPlaying(true),
       () => setPlaying(false),
     );
   }, [current]);
+
 
   const toggle = (i: number) => {
     const el = audioRef.current;
