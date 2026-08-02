@@ -11,8 +11,18 @@ import { DaaSection, UsSection } from "@/components/PeopleSections";
 import HeartDraw from "@/components/HeartDraw";
 import Letter from "@/components/Letter";
 import Lightbox from "@/components/Lightbox";
-import { chapters, type Shot } from "@/lib/media";
+import SingingPlayer from "@/components/SingingPlayer";
+import {
+  chapters,
+  newChapters,
+  childhoodShots,
+  sareeShots,
+  mistyShots,
+  callShots,
+  type Shot,
+} from "@/lib/media";
 import { hasPreviewKey, msUntilBirthday } from "@/lib/birthday";
+
 
 const CandleScene = lazy(() => import("@/components/CandleScene"));
 
@@ -119,14 +129,49 @@ function BirthdayPage() {
 
         <AboutHer onOpen={setShot} />
 
+        <Chapter
+          title="Before she was Subbi"
+          note="Ainapur, two plaits, and a girl who already knew how to pose. These are the oldest photos I have of her."
+          shots={childhoodShots}
+          onOpen={setShot}
+        />
+
         {chapters.map((c) => (
           <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
         ))}
+
+        {newChapters.map((c) => (
+          <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
+        ))}
+
+        <Chapter
+          title="Saree days"
+          note="Traditional day at college, festivals at home, temples in Belagavi. This is the version of her that North Karnataka made."
+          shots={sareeShots}
+          onOpen={setShot}
+        />
+
+        <SingingPlayer />
+
+        <Chapter
+          title="Misty"
+          note="The dog who gets more of her attention than any human alive, and deserves it."
+          shots={mistyShots}
+          onOpen={setShot}
+        />
+
+        <Chapter
+          title="Our calls"
+          note="Screenshots she doesn't know I took. Half of them mid-sentence, all of them at some ridiculous hour."
+          shots={callShots}
+          onOpen={setShot}
+        />
 
         <DaaSection onOpen={setShot} />
         <UsSection onOpen={setShot} />
         <HeartDraw />
         <Letter />
+
 
         <footer className="px-5 pb-16 text-center">
           <p className="font-hand text-2xl text-muted-foreground">
