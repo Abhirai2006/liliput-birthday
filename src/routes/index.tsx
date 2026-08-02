@@ -11,8 +11,18 @@ import { DaaSection, UsSection } from "@/components/PeopleSections";
 import HeartDraw from "@/components/HeartDraw";
 import Letter from "@/components/Letter";
 import Lightbox from "@/components/Lightbox";
-import { chapters, type Shot } from "@/lib/media";
+import SingingPlayer from "@/components/SingingPlayer";
+import {
+  chapters,
+  newChapters,
+  childhoodShots,
+  sareeShots,
+  mistyShots,
+  callShots,
+  type Shot,
+} from "@/lib/media";
 import { hasPreviewKey, msUntilBirthday } from "@/lib/birthday";
+
 
 const CandleScene = lazy(() => import("@/components/CandleScene"));
 
