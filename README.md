@@ -14,7 +14,7 @@ i will give u the photos
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://liliput-birthday.lovable.app
+**Live app**: wait for a while
 
 ## Build with Lovable
 
