@@ -49,10 +49,10 @@ export default function SingingPlayer() {
         className="text-center"
       >
         <p className="text-[0.65rem] uppercase tracking-[0.4em] text-primary">her actual voice</p>
-        <h2 className="mt-4 text-4xl italic sm:text-5xl">Ten recordings</h2>
+        <h2 className="mt-4 text-4xl italic sm:text-5xl">Eight recordings</h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
           She sends these at odd hours, sings half a Kannada song, then says it wasn't good. It was
-          good. All ten of them are here now, so she can't argue.
+          good. They're all here now, so she can't argue.
         </p>
       </motion.div>
 

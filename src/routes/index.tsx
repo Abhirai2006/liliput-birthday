@@ -12,13 +12,19 @@ import HeartDraw from "@/components/HeartDraw";
 import Letter from "@/components/Letter";
 import Lightbox from "@/components/Lightbox";
 import SingingPlayer from "@/components/SingingPlayer";
+import AgeReveal from "@/components/AgeReveal";
+import PolaroidWall from "@/components/PolaroidWall";
 import {
   chapters,
   newChapters,
+  augChapters,
   childhoodShots,
+  kidPrints,
+  schoolShots,
   sareeShots,
   mistyShots,
   callShots,
+  wallShots,
   type Shot,
 } from "@/lib/media";
 import { hasPreviewKey, msUntilBirthday } from "@/lib/birthday";
@@ -127,6 +133,8 @@ function BirthdayPage() {
           </motion.p>
         </section>
 
+        <AgeReveal />
+
         <AboutHer onOpen={setShot} />
 
         <Chapter
@@ -136,11 +144,31 @@ function BirthdayPage() {
           onOpen={setShot}
         />
 
+        <Chapter
+          title="The printed ones"
+          note="Real photographs, from before anything was on a phone. Somebody kept these in a frame for twenty years."
+          shots={kidPrints}
+          onOpen={setShot}
+        />
+
+        <Chapter
+          title="School, not college"
+          note="Uniforms, benches, a physics teacher she actually liked, and one birthday party she still brings up."
+          shots={schoolShots}
+          onOpen={setShot}
+        />
+
         {chapters.map((c) => (
           <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
         ))}
 
+        <PolaroidWall shots={wallShots} onOpen={setShot} />
+
         {newChapters.map((c) => (
+          <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
+        ))}
+
+        {augChapters.map((c) => (
           <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
         ))}
 
