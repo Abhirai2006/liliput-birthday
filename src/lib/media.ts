@@ -95,7 +95,7 @@ export const usShot: Shot = {
 
 export type Song = { src: string; title: string; len: string };
 
-/** Her own voice. Ten recordings — WhatsApp voice notes and screen-recorded singing. */
+/** Her own voice. WhatsApp voice notes and screen-recorded singing. */
 export const songs: Song[] = [
   { src: "/media/na-4.mp3", title: "The long one — Kannada songs, back to back", len: "3:54" },
   { src: "/media/na-9.mp3", title: "Late night, no audience", len: "1:03" },
@@ -103,10 +103,8 @@ export const songs: Song[] = [
   { src: "/media/na-6.mp3", title: "Half a song, all the feeling", len: "0:50" },
   { src: "/media/na-10.mp3", title: "Sad-song hour", len: "0:44" },
   { src: "/media/na-5.mp3", title: "Recorded and sent before she could change her mind", len: "0:37" },
-  { src: "/media/na-1.mp3", title: "The first one she ever sent me", len: "0:36" },
   { src: "/media/na-7.mp3", title: "Twenty-one seconds. Enough.", len: "0:21" },
   { src: "/media/na-8.mp3", title: "This is the one I replay", len: "0:20" },
-  { src: "/media/na-2.mp3", title: "\"Ippe saaku\" — that's all you're getting", len: "0:19" },
 ];
 
 export const childhoodShots: Shot[] = [
@@ -209,6 +207,80 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/n-bday-collage.jpg", kind: "photo", caption: "Somebody's birthday collage for her. She kept it. Of course she did.", orient: "p" },
       { src: "/media/nv-mug.mp4", poster: "/media/nv-mug.jpg", kind: "video", caption: "Cow-print mug, cow-print filter. Commitment.", orient: "p" },
       { src: "/media/nv-lying.mp4", poster: "/media/nv-lying.jpg", kind: "video", caption: "Half asleep, still recording.", orient: "p" },
+    ],
+  },
+];
+
+/* ── third batch: the 03/08 folder, plus the five photos he named himself ── */
+
+/** The two of us, and the people from school. He named these one by one. */
+export const usShots: Shot[] = [
+  { src: "/media/g-us-campus.jpg", kind: "photo", caption: "Her in a saree, me pretending I wasn't nervous about the photo.", orient: "l" },
+  { src: "/media/g-us-rooftop.jpg", kind: "photo", caption: "Dinner, night lights, and about four hours of talking.", orient: "p" },
+];
+
+export const schoolShots: Shot[] = [
+  { src: "/media/g-physics-teacher.jpg", kind: "photo", caption: "Her favourite physics teacher. The only subject she never complained about.", orient: "p" },
+  { src: "/media/g-school-group.jpg", kind: "photo", caption: "School, not college — the whole class outside the building.", orient: "l" },
+  { src: "/media/g-school-uniform.jpg", kind: "photo", caption: "Uniform, dupatta, ID card. Fully in character.", orient: "p" },
+  { src: "/media/g-school-two.jpg", kind: "photo", caption: "Two of them on a school bench, up to something.", orient: "l" },
+  { src: "/media/g-sr-party.jpg", kind: "photo", caption: "SR's birthday party. She cut the cake like it was hers.", orient: "p" },
+];
+
+export const kidPrints: Shot[] = [
+  { src: "/media/g-kid-frame.jpg", kind: "photo", caption: "An actual printed photo, kept in an actual frame. Ainapur.", orient: "l" },
+  { src: "/media/g-kid-two.jpg", kind: "photo", caption: "Two small girls, one very serious expression.", orient: "p" },
+  { src: "/media/g-kid-bed.jpg", kind: "photo", caption: "Before phones, before filters, before everything.", orient: "l" },
+  { src: "/media/g-kid-waterfall.jpg", kind: "photo", caption: "First family trip photo she'll still describe in full detail.", orient: "l" },
+  { src: "/media/g-kid-temple.jpg", kind: "photo", caption: "Temple steps, tiny sandals, hand held tight.", orient: "p" },
+];
+
+/** The wall — pinned polaroids, straight out of the reel he sent me. */
+export const wallShots: Shot[] = [
+  { src: "/media/g-chin.jpg", kind: "photo", caption: "Chin on hand, thinking about something she won't tell me.", orient: "p" },
+  { src: "/media/g-sunset-look.jpg", kind: "photo", caption: "Sunset on the terrace. She turned at exactly the right second.", orient: "l" },
+  { src: "/media/g-pink-gown.jpg", kind: "photo", caption: "Pink, floor-length, entirely unnecessary. Loved it anyway.", orient: "p" },
+  { src: "/media/g-lamps.jpg", kind: "photo", caption: "Fairy lights and a smile she can't hold in.", orient: "p" },
+  { src: "/media/g-green-saree.jpg", kind: "photo", caption: "Green saree. Five feet of it.", orient: "p" },
+  { src: "/media/g-rcb.jpg", kind: "photo", caption: "RCB jersey. Please don't ask her about the season.", orient: "p" },
+];
+
+export const augChapters: { title: string; note: string; shots: Shot[] }[] = [
+  {
+    title: "The old phone folder",
+    note: "Grainy, badly lit, taken on a phone that's long dead. Somehow the best ones in the whole lot.",
+    shots: [
+      { src: "/media/g-lying-a.jpg", kind: "photo", caption: "Yellow wall, no makeup, no audience.", orient: "l" },
+      { src: "/media/g-lying-b.jpg", kind: "photo", caption: "Same wall, same afternoon, twelve more photos.", orient: "l" },
+      { src: "/media/g-blue-collar.jpg", kind: "photo", caption: "Blue collar top and the doorway she always stood in.", orient: "l" },
+      { src: "/media/g-lying-c.jpg", kind: "photo", caption: "Black tee, big hair, mid-laugh.", orient: "l" },
+      { src: "/media/g-close.jpg", kind: "photo", caption: "Too close to the camera. Still came out well.", orient: "l" },
+      { src: "/media/g-squint.jpg", kind: "photo", caption: "Squinting at her own screen light.", orient: "l" },
+      { src: "/media/g-dark-soft.jpg", kind: "photo", caption: "One lamp on, everyone asleep.", orient: "p" },
+      { src: "/media/g-white-dress.jpg", kind: "photo", caption: "White dress, terrace, evening.", orient: "p" },
+      { src: "/media/g-framed.jpg", kind: "photo", caption: "A photo of a photo. She still had it printed.", orient: "p" },
+    ],
+  },
+  {
+    title: "Nights out, this year",
+    note: "Streetlights, dinner tables, one bowling alley, and a group that never keeps its volume down.",
+    shots: [
+      { src: "/media/g-street-black.jpg", kind: "photo", caption: "Night street, black kurta, absolutely posing.", orient: "p" },
+      { src: "/media/g-street-turn.jpg", kind: "photo", caption: "\"One more, one more.\" There were nine more.", orient: "p" },
+      { src: "/media/gv-bowling.mp4", poster: "/media/gv-bowling.jpg", kind: "video", caption: "Bowling. Arms up before the ball even landed.", orient: "l" },
+      { src: "/media/g-portrait-night.jpg", kind: "photo", caption: "Portrait mode did all the work. So did she.", orient: "l" },
+      { src: "/media/g-saree-night.jpg", kind: "photo", caption: "Saree after dark, function nearly over.", orient: "l" },
+      { src: "/media/g-group-night.jpg", kind: "photo", caption: "The entire crowd of them, squeezed into one frame.", orient: "l" },
+      { src: "/media/g-blue-kurti.jpg", kind: "photo", caption: "Blue kurti, arms folded, opinion loaded.", orient: "l" },
+      { src: "/media/g-mirror-stripe.jpg", kind: "photo", caption: "Striped top, mirror, phone. The holy trinity.", orient: "p" },
+      { src: "/media/g-mirror-phone.jpg", kind: "photo", caption: "Caught in the mirror behind her.", orient: "p" },
+      { src: "/media/g-sitting.jpg", kind: "photo", caption: "Sitting on the floor, waiting for someone to be ready.", orient: "p" },
+      { src: "/media/g-hills.jpg", kind: "photo", caption: "Hills behind her, hair everywhere.", orient: "l" },
+      { src: "/media/g-red-saree-trees.jpg", kind: "photo", caption: "Red saree under green trees. Best combination she owns.", orient: "p" },
+      { src: "/media/g-point.jpg", kind: "photo", caption: "Pointing at something off-camera. Never told me what.", orient: "p" },
+      { src: "/media/g-silhouette.jpg", kind: "photo", caption: "Outline against the last bit of daylight.", orient: "l" },
+      { src: "/media/gv-thumbs2.mp4", poster: "/media/gv-thumbs2.jpg", kind: "video", caption: "Two thumbs up on the 31st. Nothing to celebrate.", orient: "p" },
+      { src: "/media/gv-dogfilter.mp4", poster: "/media/gv-dogfilter.jpg", kind: "video", caption: "Dog filters, outdoors, no shame at all.", orient: "p" },
     ],
   },
 ];

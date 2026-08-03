@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import PhotoFrame from "./PhotoFrame";
-import { daaShots, usShot, type Shot } from "@/lib/media";
+import { daaShots, usShot, usShots, type Shot } from "@/lib/media";
 
 export function DaaSection({ onOpen }: { onOpen: (s: Shot) => void }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -64,6 +64,11 @@ export function UsSection({ onOpen }: { onOpen: (s: Shot) => void }) {
             <p className="font-hand text-2xl text-candle-soft">
               Whatever you're calling me — I'm not going anywhere.
             </p>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-4">
+            {usShots.map((s, i) => (
+              <PhotoFrame key={s.src} shot={s} index={i + 2} onOpen={onOpen} />
+            ))}
           </div>
         </div>
       </div>
