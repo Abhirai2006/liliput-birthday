@@ -8,7 +8,7 @@ import LockScreen from "@/components/LockScreen";
 import Chapter from "@/components/Chapter";
 import AboutHer from "@/components/AboutHer";
 import { DaaSection, UsSection } from "@/components/PeopleSections";
-import HeartDraw from "@/components/HeartDraw";
+import Remember from "@/components/Remember";
 import Letter from "@/components/Letter";
 import Lightbox from "@/components/Lightbox";
 import SingingPlayer from "@/components/SingingPlayer";
@@ -197,7 +197,7 @@ function BirthdayPage() {
 
         <DaaSection onOpen={setShot} />
         <UsSection onOpen={setShot} />
-        <HeartDraw />
+        <Remember />
         <Letter />
 
 
