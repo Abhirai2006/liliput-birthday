@@ -25,6 +25,8 @@ import {
   mistyShots,
   callShots,
   wallShots,
+  singShots,
+
   type Shot,
 } from "@/lib/media";
 import { hasPreviewKey, msUntilBirthday } from "@/lib/birthday";
