@@ -285,16 +285,12 @@ export const augChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/g-portrait-night.jpg", kind: "photo", caption: "Portrait mode did all the work. So did she.", orient: "l" },
       { src: "/media/g-saree-night.jpg", kind: "photo", caption: "Dark saree on an empty street, function nearly over.", orient: "l" },
       { src: "/media/g-group-night.jpg", kind: "photo", caption: "The whole crowd of them lined up on the rooftop.", orient: "l" },
-      { src: "/media/g-blue-kurti.jpg", kind: "photo", caption: "Blue kurti, hand at her ear, sky doing the rest.", orient: "l" },
       { src: "/media/g-mirror-stripe.jpg", kind: "photo", caption: "Striped top, mirror, phone. The holy trinity.", orient: "p" },
       { src: "/media/g-mirror-phone.jpg", kind: "photo", caption: "Hostel mirror, camera app still open, room an absolute disaster.", orient: "p" },
-      { src: "/media/g-sitting.jpg", kind: "photo", caption: "Sitting on a ledge, phone in hand, waiting for someone to be ready.", orient: "p" },
-      { src: "/media/g-hills.jpg", kind: "photo", caption: "Yellow bushes, hills behind her, hair everywhere.", orient: "l" },
       { src: "/media/g-red-saree-trees.jpg", kind: "photo", caption: "Red saree under green trees. Best combination she owns.", orient: "p" },
       { src: "/media/g-point.jpg", kind: "photo", caption: "Pointing at something off-camera. Never told me what.", orient: "p" },
       { src: "/media/g-silhouette.jpg", kind: "photo", caption: "Outline against the last bit of daylight.", orient: "l" },
-      { src: "/media/gv-thumbs2.mp4", poster: "/media/gv-thumbs2.jpg", kind: "video", caption: "Two thumbs up on the 31st. Nothing to celebrate.", orient: "p" },
-      { src: "/media/gv-dogfilter.mp4", poster: "/media/gv-dogfilter.jpg", kind: "video", caption: "Dog filters, outdoors, no shame at all.", orient: "p" },
+
     ],
   },
 ];
