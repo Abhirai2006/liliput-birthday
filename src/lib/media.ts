@@ -235,8 +235,11 @@ export const schoolShots: Shot[] = [
   { src: "/media/g-school-group.jpg", kind: "photo", caption: "School, not college — the whole crowd of them at the gate.", orient: "l" },
   { src: "/media/g-school-uniform.jpg", kind: "photo", caption: "Uniform, ID card, hands folded. Fully in character.", orient: "p" },
   { src: "/media/g-school-two.jpg", kind: "photo", caption: "Two of them at the same desk, glasses on, up to something.", orient: "l" },
+  { src: "/media/n-group-a.jpg", kind: "photo", caption: "School group photo — not college. She's front and centre.", orient: "l" },
+  { src: "/media/n-mirror-two.jpg", kind: "photo", caption: "Uniform selfie, taken during class. Obviously.", orient: "p" },
   { src: "/media/g-sr-party.jpg", kind: "photo", caption: "SR's birthday party. The cake got more photos than the people.", orient: "p" },
 ];
+
 
 export const kidPrints: Shot[] = [
   { src: "/media/g-kid-frame.jpg", kind: "photo", caption: "An actual printed photo, kept in an actual frame. Ainapur.", orient: "l" },
