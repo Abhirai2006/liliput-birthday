@@ -49,15 +49,6 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
     ],
   },
   {
-    title: "The one who sings",
-    note: "Half the time she doesn't know she's doing it. A line of some sad song, under her breath, in the middle of a sentence.",
-    shots: [
-      { src: "/media/sing-01.jpg", kind: "photo", caption: "Sunset, hand up, singing to nobody.", orient: "p" },
-      { src: "/media/sing-02.jpg", kind: "photo", caption: "Eyes shut, humming something she'd deny later.", orient: "p" },
-      { src: "/media/v-happy.mp4", poster: "/media/v-happy.jpg", kind: "video", caption: "\"Happy vibes\" — her caption. Rare and worth keeping.", orient: "p" },
-    ],
-  },
-  {
     title: "Out and about",
     note: "Give her a mall, a bus, and a whole day. She'll come back with three bags and one story you'll hear four times.",
     shots: [
@@ -65,20 +56,21 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/v-ride.mp4", poster: "/media/v-ride.jpg", kind: "video", caption: "\"Thanks for the dream ridee.\" Pink kurta, open road.", orient: "l" },
       { src: "/media/her-07.jpg", kind: "photo", caption: "Sitting on a ledge somewhere, thinking about something.", orient: "p" },
       { src: "/media/her-08.jpg", kind: "photo", caption: "College ID still on. Day one energy.", orient: "p" },
-      { src: "/media/her-13.jpg", kind: "photo", caption: "Old pictures, older versions of her. Same face.", orient: "p" },
+      { src: "/media/n-mall.jpg", kind: "photo", caption: "Shop mirror with Anushree. Nothing was bought. Nothing ever is.", orient: "p" },
       { src: "/media/her-06.jpg", kind: "photo", caption: "Filters, hearts, whatever. Still the same girl underneath.", orient: "p" },
-    ],
-  },
-  {
-    title: "Her people",
-    note: "She collects people the way other people collect songs.",
-    shots: [
-      { src: "/media/friends-1.jpg", kind: "photo", caption: "One collage, three faces, her caption: \"sunny day.\"", orient: "p" },
-      { src: "/media/family-1.jpg", kind: "photo", caption: "Back seat of a bus, cheeks being squeezed, no complaints filed.", orient: "p" },
-      { src: "/media/v-friend.mp4", poster: "/media/v-friend.jpg", kind: "video", caption: "Twenty-two seconds of absolute nonsense.", orient: "l" },
+      { src: "/media/g-sitting.jpg", kind: "photo", caption: "Sitting on a ledge, phone in hand, waiting for someone to be ready.", orient: "p" },
+      { src: "/media/g-hills.jpg", kind: "photo", caption: "Yellow bushes, hills behind her, hair everywhere.", orient: "l" },
     ],
   },
 ];
+
+/** Shown beside her own recordings — small, deliberate, three frames only. */
+export const singShots: Shot[] = [
+  { src: "/media/sing-01.jpg", kind: "photo", caption: "Sunset, hand up, singing to nobody.", orient: "p" },
+  { src: "/media/sing-02.jpg", kind: "photo", caption: "Eyes shut, humming something she'd deny later.", orient: "p" },
+  { src: "/media/v-happy.mp4", poster: "/media/v-happy.jpg", kind: "video", caption: "\"Happy vibes\" — her caption. Rare and worth keeping.", orient: "p" },
+];
+
 
 export const daaShots: Shot[] = [
   { src: "/media/daa-1.jpg", kind: "photo", caption: "Her on the phone. Daa waiting. Standard arrangement.", orient: "l" },
