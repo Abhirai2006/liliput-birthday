@@ -31,7 +31,10 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/her-11.jpg", kind: "photo", caption: "Caught doing something completely useless. Delighted about it.", orient: "p" },
       { src: "/media/her-16.jpg", kind: "photo", caption: "\"Combed without comb.\" Her words, not mine.", orient: "p" },
       { src: "/media/her-01.jpg", kind: "photo", caption: "Uffff. That was the whole caption. That was enough.", orient: "p" },
+      { src: "/media/n-chat.jpg", kind: "photo", caption: "Hostel mirror, phone already up, nowhere to be.", orient: "p" },
+      { src: "/media/her-13.jpg", kind: "photo", caption: "Old pictures, older versions of her. Same face.", orient: "p" },
     ],
+
   },
   {
     title: "Getting ready",
