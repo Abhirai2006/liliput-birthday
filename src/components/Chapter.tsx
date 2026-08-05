@@ -38,13 +38,22 @@ export default function Chapter({
         </motion.p>
       </div>
 
-      <div className="mt-14 columns-2 gap-4 sm:columns-3 sm:gap-6 lg:columns-4">
-        {shots.map((shot, i) => (
-          <div key={shot.src} className="mb-4 break-inside-avoid sm:mb-6">
-            <PhotoFrame shot={shot} index={i} onOpen={onOpen} />
-          </div>
-        ))}
-      </div>
+      {shots.length <= 4 ? (
+        <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-5 sm:gap-8 md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
+          {shots.map((shot, i) => (
+            <PhotoFrame key={shot.src} shot={shot} index={i} onOpen={onOpen} />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-14 columns-2 gap-4 sm:columns-3 sm:gap-6 lg:columns-4">
+          {shots.map((shot, i) => (
+            <div key={shot.src} className="mb-4 break-inside-avoid sm:mb-6">
+              <PhotoFrame shot={shot} index={i} onOpen={onOpen} />
+            </div>
+          ))}
+        </div>
+      )}
+
     </section>
   );
 }
