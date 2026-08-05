@@ -31,7 +31,10 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/her-11.jpg", kind: "photo", caption: "Caught doing something completely useless. Delighted about it.", orient: "p" },
       { src: "/media/her-16.jpg", kind: "photo", caption: "\"Combed without comb.\" Her words, not mine.", orient: "p" },
       { src: "/media/her-01.jpg", kind: "photo", caption: "Uffff. That was the whole caption. That was enough.", orient: "p" },
+      { src: "/media/n-chat.jpg", kind: "photo", caption: "Hostel mirror, phone already up, nowhere to be.", orient: "p" },
+      { src: "/media/her-13.jpg", kind: "photo", caption: "Old pictures, older versions of her. Same face.", orient: "p" },
     ],
+
   },
   {
     title: "Getting ready",
@@ -46,15 +49,6 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
     ],
   },
   {
-    title: "The one who sings",
-    note: "Half the time she doesn't know she's doing it. A line of some sad song, under her breath, in the middle of a sentence.",
-    shots: [
-      { src: "/media/sing-01.jpg", kind: "photo", caption: "Sunset, hand up, singing to nobody.", orient: "p" },
-      { src: "/media/sing-02.jpg", kind: "photo", caption: "Eyes shut, humming something she'd deny later.", orient: "p" },
-      { src: "/media/v-happy.mp4", poster: "/media/v-happy.jpg", kind: "video", caption: "\"Happy vibes\" — her caption. Rare and worth keeping.", orient: "p" },
-    ],
-  },
-  {
     title: "Out and about",
     note: "Give her a mall, a bus, and a whole day. She'll come back with three bags and one story you'll hear four times.",
     shots: [
@@ -62,20 +56,21 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/v-ride.mp4", poster: "/media/v-ride.jpg", kind: "video", caption: "\"Thanks for the dream ridee.\" Pink kurta, open road.", orient: "l" },
       { src: "/media/her-07.jpg", kind: "photo", caption: "Sitting on a ledge somewhere, thinking about something.", orient: "p" },
       { src: "/media/her-08.jpg", kind: "photo", caption: "College ID still on. Day one energy.", orient: "p" },
-      { src: "/media/her-13.jpg", kind: "photo", caption: "Old pictures, older versions of her. Same face.", orient: "p" },
+      { src: "/media/n-mall.jpg", kind: "photo", caption: "Shop mirror with Anushree. Nothing was bought. Nothing ever is.", orient: "p" },
       { src: "/media/her-06.jpg", kind: "photo", caption: "Filters, hearts, whatever. Still the same girl underneath.", orient: "p" },
-    ],
-  },
-  {
-    title: "Her people",
-    note: "She collects people the way other people collect songs.",
-    shots: [
-      { src: "/media/friends-1.jpg", kind: "photo", caption: "One collage, three faces, her caption: \"sunny day.\"", orient: "p" },
-      { src: "/media/family-1.jpg", kind: "photo", caption: "Back seat of a bus, cheeks being squeezed, no complaints filed.", orient: "p" },
-      { src: "/media/v-friend.mp4", poster: "/media/v-friend.jpg", kind: "video", caption: "Twenty-two seconds of absolute nonsense.", orient: "l" },
+      { src: "/media/g-sitting.jpg", kind: "photo", caption: "Sitting on a ledge, phone in hand, waiting for someone to be ready.", orient: "p" },
+      { src: "/media/g-hills.jpg", kind: "photo", caption: "Yellow bushes, hills behind her, hair everywhere.", orient: "l" },
     ],
   },
 ];
+
+/** Shown beside her own recordings — small, deliberate, three frames only. */
+export const singShots: Shot[] = [
+  { src: "/media/sing-01.jpg", kind: "photo", caption: "Sunset, hand up, singing to nobody.", orient: "p" },
+  { src: "/media/sing-02.jpg", kind: "photo", caption: "Eyes shut, humming something she'd deny later.", orient: "p" },
+  { src: "/media/v-happy.mp4", poster: "/media/v-happy.jpg", kind: "video", caption: "\"Happy vibes\" — her caption. Rare and worth keeping.", orient: "p" },
+];
+
 
 export const daaShots: Shot[] = [
   { src: "/media/daa-1.jpg", kind: "photo", caption: "Her on the phone. Daa waiting. Standard arrangement.", orient: "l" },
@@ -143,7 +138,7 @@ export const callShots: Shot[] = [
 export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
   {
     title: "Her year, in selfies",
-    note: "Ninety-five new files landed in one day. I went through every single one. These are the ones that made me stop scrolling.",
+    note: "Ninety-five files landed in one day. I went through every single one. These are the ones that made me stop scrolling.",
     shots: [
       { src: "/media/n-profile.jpg", kind: "photo", caption: "Side light, chin up. She didn't plan this and it still came out like a poster.", orient: "l" },
       { src: "/media/n-wings.jpg", kind: "photo", caption: "Wings on the wall. Fitting.", orient: "p" },
@@ -158,6 +153,12 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/n-white-b.jpg", kind: "photo", caption: "Same evening. Ten more just like it.", orient: "p" },
       { src: "/media/nv-white.mp4", poster: "/media/nv-white.jpg", kind: "video", caption: "Four seconds of her being completely herself.", orient: "p" },
       { src: "/media/n-pink-a.jpg", kind: "photo", caption: "Peach top, sleepy eyes.", orient: "p" },
+    ],
+  },
+  {
+    title: "Same year, still posing",
+    note: "The other half of that pile. Different wall, different top, exact same head tilt.",
+    shots: [
       { src: "/media/n-pink-b.jpg", kind: "photo", caption: "Hiding behind her own hand. It never works.", orient: "p" },
       { src: "/media/n-pink-c.jpg", kind: "photo", caption: "Arms crossed, argument already won.", orient: "p" },
       { src: "/media/n-arch.jpg", kind: "photo", caption: "Old building, new outfit.", orient: "p" },
@@ -175,17 +176,16 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
   },
   {
     title: "Dressed up, going out",
-    note: "Mall trips, night streets, cafés, and one scooter. She never leaves the house at less than a hundred percent.",
+    note: "Night streets, garden lights, one scooter. She never leaves the house at less than a hundred percent.",
     shots: [
       { src: "/media/n-street.jpg", kind: "photo", caption: "Night street, dark saree, streetlights doing her a favour.", orient: "p" },
       { src: "/media/n-night-kurta.jpg", kind: "photo", caption: "Blue kurta, garden lights, full main-character energy.", orient: "p" },
-      { src: "/media/n-mall.jpg", kind: "photo", caption: "Shop mirror with Anushree. Nothing was bought. Nothing ever is.", orient: "p" },
-      { src: "/media/n-chat.jpg", kind: "photo", caption: "Pink shorts, hostel mirror, phone already up.", orient: "p" },
       { src: "/media/nv-scooter.mp4", poster: "/media/nv-scooter.jpg", kind: "video", caption: "Scooter, sunshine, and someone else doing the driving.", orient: "p" },
       { src: "/media/n-black-top.jpg", kind: "photo", caption: "Printed top, beige pants, quietly stunning.", orient: "p" },
       { src: "/media/n-red-stairs.jpg", kind: "photo", caption: "Red kurti on a staircase. The mask didn't stop her.", orient: "p" },
       { src: "/media/n-night-out.jpg", kind: "photo", caption: "SR's birthday again — same rooftop, same cake, string lights everywhere.", orient: "l" },
       { src: "/media/nv-mirror.mp4", poster: "/media/nv-mirror.jpg", kind: "video", caption: "Room, mirror, phone, dance. In that order.", orient: "p" },
+      { src: "/media/g-blue-kurti.jpg", kind: "photo", caption: "Blue kurti, hand at her ear, sky doing the rest.", orient: "l" },
     ],
   },
   {
@@ -193,23 +193,33 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
     note: "Anushree, Kruthika, Vaishu, Shree — the names on her Snapchat and in every good story she tells.",
     shots: [
       { src: "/media/nv-thumbs.mp4", poster: "/media/nv-thumbs.jpg", kind: "video", caption: "Two thumbs up. Nothing was actually going well.", orient: "p" },
-      { src: "/media/n-mirror-two.jpg", kind: "photo", caption: "Uniform selfie, taken during class. Obviously.", orient: "p" },
-      { src: "/media/nv-two-lying.mp4", poster: "/media/nv-two-lying.jpg", kind: "video", caption: "Lying sideways, talking rubbish, perfectly happy.", orient: "p" },
       { src: "/media/n-twins.jpg", kind: "photo", caption: "Matching filters. Matching nonsense.", orient: "p" },
       { src: "/media/nv-outdoor.mp4", poster: "/media/nv-outdoor.jpg", kind: "video", caption: "Dog filters outdoors. Dignity left indoors.", orient: "p" },
       { src: "/media/n-three.jpg", kind: "photo", caption: "Three of them, one jacket's worth of confidence.", orient: "l" },
       { src: "/media/nv-pink-two.mp4", poster: "/media/nv-pink-two.jpg", kind: "video", caption: "Pink kurtas and a joke I was never told.", orient: "p" },
       { src: "/media/n-girls.jpg", kind: "photo", caption: "The whole set of them, dressed for something.", orient: "l" },
+      { src: "/media/friends-1.jpg", kind: "photo", caption: "One collage, three faces, her caption: \"sunny day.\"", orient: "p" },
+      { src: "/media/family-1.jpg", kind: "photo", caption: "Back seat of a bus, cheeks being squeezed, no complaints filed.", orient: "p" },
+      { src: "/media/v-friend.mp4", poster: "/media/v-friend.jpg", kind: "video", caption: "Twenty-two seconds of absolute nonsense.", orient: "l" },
+    ],
+  },
+  {
+    title: "Filters on, volume up",
+    note: "The clips nobody was supposed to keep. I kept all of them.",
+    shots: [
+      { src: "/media/nv-two-lying.mp4", poster: "/media/nv-two-lying.jpg", kind: "video", caption: "Lying sideways, talking rubbish, perfectly happy.", orient: "p" },
       { src: "/media/nv-three.mp4", poster: "/media/nv-three.jpg", kind: "video", caption: "Three-way call, filters on, volume up.", orient: "p" },
-      { src: "/media/n-group-a.jpg", kind: "photo", caption: "School group photo, not college. She's front and centre.", orient: "l" },
       { src: "/media/nv-filters.mp4", poster: "/media/nv-filters.jpg", kind: "video", caption: "Whatever this filter is, they committed to it.", orient: "p" },
       { src: "/media/n-family.jpg", kind: "photo", caption: "One filter, four frames, two of them refusing to sit still.", orient: "p" },
       { src: "/media/n-bday-collage.jpg", kind: "photo", caption: "Somebody's birthday collage for her. She kept it. Of course she did.", orient: "p" },
       { src: "/media/nv-mug.mp4", poster: "/media/nv-mug.jpg", kind: "video", caption: "Cow-print mug, cow-print filter. Commitment.", orient: "p" },
       { src: "/media/nv-lying.mp4", poster: "/media/nv-lying.jpg", kind: "video", caption: "Half asleep, still recording.", orient: "p" },
+      { src: "/media/gv-thumbs2.mp4", poster: "/media/gv-thumbs2.jpg", kind: "video", caption: "Two thumbs up on the 31st. Nothing to celebrate.", orient: "p" },
+      { src: "/media/gv-dogfilter.mp4", poster: "/media/gv-dogfilter.jpg", kind: "video", caption: "Dog filters, outdoors, no shame at all.", orient: "p" },
     ],
   },
 ];
+
 
 /* ── third batch: the 03/08 folder, plus the five photos he named himself ── */
 
@@ -225,8 +235,11 @@ export const schoolShots: Shot[] = [
   { src: "/media/g-school-group.jpg", kind: "photo", caption: "School, not college — the whole crowd of them at the gate.", orient: "l" },
   { src: "/media/g-school-uniform.jpg", kind: "photo", caption: "Uniform, ID card, hands folded. Fully in character.", orient: "p" },
   { src: "/media/g-school-two.jpg", kind: "photo", caption: "Two of them at the same desk, glasses on, up to something.", orient: "l" },
+  { src: "/media/n-group-a.jpg", kind: "photo", caption: "School group photo — not college. She's front and centre.", orient: "l" },
+  { src: "/media/n-mirror-two.jpg", kind: "photo", caption: "Uniform selfie, taken during class. Obviously.", orient: "p" },
   { src: "/media/g-sr-party.jpg", kind: "photo", caption: "SR's birthday party. The cake got more photos than the people.", orient: "p" },
 ];
+
 
 export const kidPrints: Shot[] = [
   { src: "/media/g-kid-frame.jpg", kind: "photo", caption: "An actual printed photo, kept in an actual frame. Ainapur.", orient: "l" },
@@ -272,16 +285,12 @@ export const augChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/g-portrait-night.jpg", kind: "photo", caption: "Portrait mode did all the work. So did she.", orient: "l" },
       { src: "/media/g-saree-night.jpg", kind: "photo", caption: "Dark saree on an empty street, function nearly over.", orient: "l" },
       { src: "/media/g-group-night.jpg", kind: "photo", caption: "The whole crowd of them lined up on the rooftop.", orient: "l" },
-      { src: "/media/g-blue-kurti.jpg", kind: "photo", caption: "Blue kurti, hand at her ear, sky doing the rest.", orient: "l" },
       { src: "/media/g-mirror-stripe.jpg", kind: "photo", caption: "Striped top, mirror, phone. The holy trinity.", orient: "p" },
       { src: "/media/g-mirror-phone.jpg", kind: "photo", caption: "Hostel mirror, camera app still open, room an absolute disaster.", orient: "p" },
-      { src: "/media/g-sitting.jpg", kind: "photo", caption: "Sitting on a ledge, phone in hand, waiting for someone to be ready.", orient: "p" },
-      { src: "/media/g-hills.jpg", kind: "photo", caption: "Yellow bushes, hills behind her, hair everywhere.", orient: "l" },
       { src: "/media/g-red-saree-trees.jpg", kind: "photo", caption: "Red saree under green trees. Best combination she owns.", orient: "p" },
       { src: "/media/g-point.jpg", kind: "photo", caption: "Pointing at something off-camera. Never told me what.", orient: "p" },
       { src: "/media/g-silhouette.jpg", kind: "photo", caption: "Outline against the last bit of daylight.", orient: "l" },
-      { src: "/media/gv-thumbs2.mp4", poster: "/media/gv-thumbs2.jpg", kind: "video", caption: "Two thumbs up on the 31st. Nothing to celebrate.", orient: "p" },
-      { src: "/media/gv-dogfilter.mp4", poster: "/media/gv-dogfilter.jpg", kind: "video", caption: "Dog filters, outdoors, no shame at all.", orient: "p" },
+
     ],
   },
 ];

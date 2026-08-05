@@ -25,6 +25,8 @@ import {
   mistyShots,
   callShots,
   wallShots,
+  singShots,
+
   type Shot,
 } from "@/lib/media";
 import { hasPreviewKey, msUntilBirthday } from "@/lib/birthday";
@@ -179,7 +181,15 @@ function BirthdayPage() {
           onOpen={setShot}
         />
 
+        <Chapter
+          title="The one who sings"
+          note="Half the time she doesn't know she's doing it — a line of some sad song, under her breath, in the middle of a sentence."
+          shots={singShots}
+          onOpen={setShot}
+        />
+
         <SingingPlayer />
+
 
         <Chapter
           title="Misty"
