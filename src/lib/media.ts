@@ -286,7 +286,7 @@ export const augChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/g-group-night.jpg", kind: "photo", caption: "The whole crowd of them lined up on the rooftop.", orient: "l" },
       { src: "/media/g-mirror-stripe.jpg", kind: "photo", caption: "Striped top, mirror, phone. The holy trinity.", orient: "p" },
       { src: "/media/g-mirror-phone.jpg", kind: "photo", caption: "Hostel mirror, camera app still open, room an absolute disaster.", orient: "p" },
-      { src: "/media/g-red-saree-trees.jpg", kind: "photo", caption: "Red saree under green trees. Best combination she owns.", orient: "p" },
+      { src: "/media/n-temple.jpg", kind: "photo", caption: "Belagavi stone and a bell taller than her.", orient: "l" },
       { src: "/media/g-point.jpg", kind: "photo", caption: "Pointing at something off-camera. Never told me what.", orient: "p" },
       { src: "/media/g-silhouette.jpg", kind: "photo", caption: "Outline against the last bit of daylight.", orient: "l" },
 
