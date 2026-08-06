@@ -114,12 +114,10 @@ export const sareeShots: Shot[] = [
   { src: "/media/n-saree-a.jpg", kind: "photo", caption: "One hand on the pleats the entire day.", orient: "p" },
   { src: "/media/n-saree-c.jpg", kind: "photo", caption: "Five feet of North Karnataka.", orient: "p" },
   { src: "/media/n-saree-d.jpg", kind: "photo", caption: "Traditional day. Her Olympics.", orient: "p" },
-  { src: "/media/n-campus.jpg", kind: "photo", caption: "Campus, saree, someone's camera. Business as usual.", orient: "l" },
-  { src: "/media/n-saree-friend.jpg", kind: "photo", caption: "Classroom photoshoot, no permission asked.", orient: "p" },
   { src: "/media/n-trad-group.jpg", kind: "photo", caption: "The whole gang in silk.", orient: "l" },
-  { src: "/media/n-saree-two.jpg", kind: "photo", caption: "Mother and daughter. Same smile, older version.", orient: "l" },
-  { src: "/media/n-festival.jpg", kind: "photo", caption: "Festival colours and a stolen pair of sunglasses.", orient: "p" },
-  { src: "/media/n-temple.jpg", kind: "photo", caption: "Belagavi stone and a bell taller than her.", orient: "l" },
+  { src: "/media/n-saree-two.jpg", kind: "photo", caption: "Her mother in a saree, her beside her. Same smile, older version.", orient: "l" },
+  { src: "/media/g-red-saree-trees.jpg", kind: "photo", caption: "Red saree under green trees. Best combination she owns.", orient: "p" },
+  { src: "/media/g-green-saree.jpg", kind: "photo", caption: "Green and blue, night lights behind her, five feet of attitude.", orient: "p" },
 ];
 
 export const mistyShots: Shot[] = [
@@ -183,7 +181,8 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/nv-scooter.mp4", poster: "/media/nv-scooter.jpg", kind: "video", caption: "Scooter, sunshine, and someone else doing the driving.", orient: "p" },
       { src: "/media/n-black-top.jpg", kind: "photo", caption: "Printed top, beige pants, quietly stunning.", orient: "p" },
       { src: "/media/n-red-stairs.jpg", kind: "photo", caption: "Red kurti on a staircase. The mask didn't stop her.", orient: "p" },
-      { src: "/media/n-night-out.jpg", kind: "photo", caption: "SR's birthday again — same rooftop, same cake, string lights everywhere.", orient: "l" },
+      { src: "/media/g-sr-party.jpg", kind: "photo", caption: "SR's birthday — same rooftop, same cake, string lights everywhere.", orient: "p" },
+      { src: "/media/n-festival.jpg", kind: "photo", caption: "Festival colours and a stolen pair of sunglasses.", orient: "p" },
       { src: "/media/nv-mirror.mp4", poster: "/media/nv-mirror.jpg", kind: "video", caption: "Room, mirror, phone, dance. In that order.", orient: "p" },
       { src: "/media/g-blue-kurti.jpg", kind: "photo", caption: "Blue kurti, hand at her ear, sky doing the rest.", orient: "l" },
     ],
@@ -201,6 +200,8 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/friends-1.jpg", kind: "photo", caption: "One collage, three faces, her caption: \"sunny day.\"", orient: "p" },
       { src: "/media/family-1.jpg", kind: "photo", caption: "Back seat of a bus, cheeks being squeezed, no complaints filed.", orient: "p" },
       { src: "/media/v-friend.mp4", poster: "/media/v-friend.jpg", kind: "video", caption: "Twenty-two seconds of absolute nonsense.", orient: "l" },
+      { src: "/media/g-school-group.jpg", kind: "photo", caption: "The whole crowd of them, lined up outside the gate.", orient: "l" },
+      { src: "/media/n-mirror-two.jpg", kind: "photo", caption: "Two of them in one mirror, one phone between them.", orient: "p" },
     ],
   },
   {
@@ -227,17 +228,12 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
 export const usShots: Shot[] = [
   { src: "/media/g-us-campus.jpg", kind: "photo", caption: "Her in a saree, me pretending I wasn't nervous about the photo.", orient: "l" },
   { src: "/media/g-us-rooftop.jpg", kind: "photo", caption: "Dinner, night lights, and about four hours of talking.", orient: "p" },
-  { src: "/media/n-cafe.jpg", kind: "photo", caption: "That same rooftop table. One plate, two forks, no hurry.", orient: "l" },
 ];
 
 export const schoolShots: Shot[] = [
   { src: "/media/g-physics-teacher.jpg", kind: "photo", caption: "Her favourite physics teacher. The only subject she never complained about.", orient: "p" },
-  { src: "/media/g-school-group.jpg", kind: "photo", caption: "School, not college — the whole crowd of them at the gate.", orient: "l" },
   { src: "/media/g-school-uniform.jpg", kind: "photo", caption: "Uniform, ID card, hands folded. Fully in character.", orient: "p" },
   { src: "/media/g-school-two.jpg", kind: "photo", caption: "Two of them at the same desk, glasses on, up to something.", orient: "l" },
-  { src: "/media/n-group-a.jpg", kind: "photo", caption: "School group photo — not college. She's front and centre.", orient: "l" },
-  { src: "/media/n-mirror-two.jpg", kind: "photo", caption: "Uniform selfie, taken during class. Obviously.", orient: "p" },
-  { src: "/media/g-sr-party.jpg", kind: "photo", caption: "SR's birthday party. The cake got more photos than the people.", orient: "p" },
 ];
 
 
@@ -255,7 +251,7 @@ export const wallShots: Shot[] = [
   { src: "/media/g-sunset-look.jpg", kind: "photo", caption: "Peach top against a sunset sky. She turned at exactly the right second.", orient: "l" },
   { src: "/media/g-pink-gown.jpg", kind: "photo", caption: "Pink, floor-length, entirely unnecessary. Loved it anyway.", orient: "p" },
   { src: "/media/g-lamps.jpg", kind: "photo", caption: "Lamp posts by the water and a whole evening free.", orient: "p" },
-  { src: "/media/g-green-saree.jpg", kind: "photo", caption: "Green and blue, night lights behind her, five feet of attitude.", orient: "p" },
+  { src: "/media/n-dogfilter.jpg", kind: "photo", caption: "Dog ears, no shame, sent at 2am.", orient: "p" },
   { src: "/media/g-rcb.jpg", kind: "photo", caption: "RCB jersey, number 18. Same number as her birthday.", orient: "p" },
 ];
 
@@ -287,7 +283,7 @@ export const augChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/g-group-night.jpg", kind: "photo", caption: "The whole crowd of them lined up on the rooftop.", orient: "l" },
       { src: "/media/g-mirror-stripe.jpg", kind: "photo", caption: "Striped top, mirror, phone. The holy trinity.", orient: "p" },
       { src: "/media/g-mirror-phone.jpg", kind: "photo", caption: "Hostel mirror, camera app still open, room an absolute disaster.", orient: "p" },
-      { src: "/media/g-red-saree-trees.jpg", kind: "photo", caption: "Red saree under green trees. Best combination she owns.", orient: "p" },
+      { src: "/media/n-temple.jpg", kind: "photo", caption: "Belagavi stone and a bell taller than her.", orient: "l" },
       { src: "/media/g-point.jpg", kind: "photo", caption: "Pointing at something off-camera. Never told me what.", orient: "p" },
       { src: "/media/g-silhouette.jpg", kind: "photo", caption: "Outline against the last bit of daylight.", orient: "l" },
 
