@@ -13,6 +13,7 @@ import Letter from "@/components/Letter";
 import Lightbox from "@/components/Lightbox";
 import SingingPlayer from "@/components/SingingPlayer";
 import AgeReveal from "@/components/AgeReveal";
+import CoverSheet from "@/components/CoverSheet";
 import PolaroidWall from "@/components/PolaroidWall";
 import {
   chapters,
@@ -64,6 +65,7 @@ function BirthdayPage() {
   );
   const [lit, setLit] = useState(true);
   const [shot, setShot] = useState<Shot | null>(null);
+  const [wrapped, setWrapped] = useState(true);
 
   useEffect(() => {
     if (!SEAL_ENABLED) return;
@@ -92,6 +94,8 @@ function BirthdayPage() {
 
   return (
     <>
+      {wrapped ? <CoverSheet onDone={() => setWrapped(false)} /> : null}
+
       <div className="pointer-events-none fixed inset-0 -z-10">
         <StarField density={0.9} />
       </div>
@@ -155,7 +159,7 @@ function BirthdayPage() {
 
         <Chapter
           title="School, not college"
-          note="Uniforms, benches, a physics teacher she actually liked, and one birthday party she still brings up."
+          note="Uniforms, ID cards, back benches, and the physics teacher she actually liked."
           shots={schoolShots}
           onOpen={setShot}
         />
