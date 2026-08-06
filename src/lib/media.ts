@@ -254,7 +254,7 @@ export const wallShots: Shot[] = [
   { src: "/media/g-sunset-look.jpg", kind: "photo", caption: "Peach top against a sunset sky. She turned at exactly the right second.", orient: "l" },
   { src: "/media/g-pink-gown.jpg", kind: "photo", caption: "Pink, floor-length, entirely unnecessary. Loved it anyway.", orient: "p" },
   { src: "/media/g-lamps.jpg", kind: "photo", caption: "Lamp posts by the water and a whole evening free.", orient: "p" },
-  { src: "/media/g-green-saree.jpg", kind: "photo", caption: "Green and blue, night lights behind her, five feet of attitude.", orient: "p" },
+  { src: "/media/n-campus.jpg", kind: "photo", caption: "Campus in a saree, someone's camera out. Business as usual.", orient: "l" },
   { src: "/media/g-rcb.jpg", kind: "photo", caption: "RCB jersey, number 18. Same number as her birthday.", orient: "p" },
 ];
 
