@@ -165,7 +165,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
     let lastX = -1;
     let lastY = -1;
     let held = -1;
-    const TEAR = Math.max(26, spacing * 1.15);
+    const TEAR = Math.max(18, spacing * 0.8);
 
     const totalSprings = () => sps.length || 1;
 
@@ -186,7 +186,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
         const d = Math.hypot(cxm - (x0 + t * dx), cym - (y0 + t * dy));
         if (d < r) snap(s);
       }
-      if (!released && broken / totalSprings() > 0.34) {
+      if (!released && broken / totalSprings() > 0.4) {
         released = true;
         for (const p of pts) p.pin = false;
       }
@@ -313,12 +313,26 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
           const ay = (p1.y - p0.y) / cw;
           const bx = (p2.x - p0.x) / ch;
           const by = (p2.y - p0.y) / ch;
+          // corners, pushed a hair outward so neighbouring cells leave no seam
+          const q: [number, number][] = [
+            [p0.x, p0.y],
+            [p1.x, p1.y],
+            [p1.x + bx * ch, p1.y + by * ch],
+            [p2.x, p2.y],
+          ];
+          const gx = (q[0]![0] + q[1]![0] + q[2]![0] + q[3]![0]) / 4;
+          const gy = (q[0]![1] + q[1]![1] + q[2]![1] + q[3]![1]) / 4;
           ctx.save();
           ctx.beginPath();
-          ctx.moveTo(p0.x, p0.y);
-          ctx.lineTo(p1.x, p1.y);
-          ctx.lineTo(p1.x + bx * ch, p1.y + by * ch);
-          ctx.lineTo(p2.x, p2.y);
+          for (let c = 0; c < 4; c++) {
+            const vx = q[c]![0] - gx;
+            const vy = q[c]![1] - gy;
+            const vl = Math.hypot(vx, vy) || 1;
+            const ex = q[c]![0] + (vx / vl) * 0.9;
+            const ey = q[c]![1] + (vy / vl) * 0.9;
+            if (c === 0) ctx.moveTo(ex, ey);
+            else ctx.lineTo(ex, ey);
+          }
           ctx.closePath();
           ctx.clip();
           ctx.transform(ax, ay, bx, by, p0.x - (ax * x * cw + bx * y * ch), p0.y - (ay * x * cw + by * y * ch));
@@ -336,7 +350,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
 
       // gone once nearly everything has torn or fallen past the bottom
       const off = pts.reduce((n, p) => n + (p.y > H + 120 ? 1 : 0), 0);
-      if (broken / totalSprings() > 0.7 || off / pts.length > 0.72) {
+      if (broken / totalSprings() > 0.78 || off / pts.length > 0.8) {
         finish();
         return;
       }
