@@ -226,17 +226,12 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
 export const usShots: Shot[] = [
   { src: "/media/g-us-campus.jpg", kind: "photo", caption: "Her in a saree, me pretending I wasn't nervous about the photo.", orient: "l" },
   { src: "/media/g-us-rooftop.jpg", kind: "photo", caption: "Dinner, night lights, and about four hours of talking.", orient: "p" },
-  { src: "/media/n-cafe.jpg", kind: "photo", caption: "That same rooftop table. One plate, two forks, no hurry.", orient: "l" },
 ];
 
 export const schoolShots: Shot[] = [
   { src: "/media/g-physics-teacher.jpg", kind: "photo", caption: "Her favourite physics teacher. The only subject she never complained about.", orient: "p" },
-  { src: "/media/g-school-group.jpg", kind: "photo", caption: "School, not college — the whole crowd of them at the gate.", orient: "l" },
   { src: "/media/g-school-uniform.jpg", kind: "photo", caption: "Uniform, ID card, hands folded. Fully in character.", orient: "p" },
   { src: "/media/g-school-two.jpg", kind: "photo", caption: "Two of them at the same desk, glasses on, up to something.", orient: "l" },
-  { src: "/media/n-group-a.jpg", kind: "photo", caption: "School group photo — not college. She's front and centre.", orient: "l" },
-  { src: "/media/n-mirror-two.jpg", kind: "photo", caption: "Uniform selfie, taken during class. Obviously.", orient: "p" },
-  { src: "/media/g-sr-party.jpg", kind: "photo", caption: "SR's birthday party. The cake got more photos than the people.", orient: "p" },
 ];
 
 
