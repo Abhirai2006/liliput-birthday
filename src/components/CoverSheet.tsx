@@ -91,7 +91,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
 
     /* ── cloth ── */
     type Pt = { x: number; y: number; px: number; py: number; pin: boolean };
-    type Sp = { a: number; b: number; len: number; on: boolean };
+    type Sp = { a: number; b: number; len: number; on: boolean; dir: 0 | 1 };
 
     let cols = 0;
     let rows = 0;
@@ -100,6 +100,9 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
     let spacing = 0;
     let broken = 0;
     let released = false;
+    // per-cell edge flags, so drawing never has to scan the spring list
+    let rightOn = new Uint8Array(0);
+    let downOn = new Uint8Array(0);
 
     const build = () => {
       spacing = Math.max(22, Math.min(W, H) / 26);
@@ -107,6 +110,8 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
       rows = Math.ceil(H / spacing) + 1;
       pts = [];
       sps = [];
+      rightOn = new Uint8Array(cols * rows).fill(1);
+      downOn = new Uint8Array(cols * rows).fill(1);
       broken = 0;
       released = false;
       for (let y = 0; y < rows; y++) {
@@ -122,15 +127,22 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
           if (x < cols - 1) {
             const a = idx(x, y);
             const b = idx(x + 1, y);
-            sps.push({ a, b, len: Math.hypot(pts[b]!.x - pts[a]!.x, pts[b]!.y - pts[a]!.y), on: true });
+            sps.push({ a, b, len: Math.hypot(pts[b]!.x - pts[a]!.x, pts[b]!.y - pts[a]!.y), on: true, dir: 0 });
           }
           if (y < rows - 1) {
             const a = idx(x, y);
             const b = idx(x, y + 1);
-            sps.push({ a, b, len: Math.hypot(pts[b]!.x - pts[a]!.x, pts[b]!.y - pts[a]!.y), on: true });
+            sps.push({ a, b, len: Math.hypot(pts[b]!.x - pts[a]!.x, pts[b]!.y - pts[a]!.y), on: true, dir: 1 });
           }
         }
       }
+    };
+
+    const snap = (s: Sp) => {
+      s.on = false;
+      broken++;
+      if (s.dir === 0) rightOn[s.a] = 0;
+      else downOn[s.a] = 0;
     };
 
     const resize = () => {
@@ -172,10 +184,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
         let t = ((cxm - x0) * dx + (cym - y0) * dy) / l2;
         t = Math.max(0, Math.min(1, t));
         const d = Math.hypot(cxm - (x0 + t * dx), cym - (y0 + t * dy));
-        if (d < r) {
-          s.on = false;
-          broken++;
-        }
+        if (d < r) snap(s);
       }
       if (!released && broken / totalSprings() > 0.34) {
         released = true;
@@ -267,8 +276,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
           const dy = b.y - a.y;
           const d = Math.hypot(dx, dy) || 0.0001;
           if (d > s.len * 3.4) {
-            s.on = false;
-            broken++;
+            snap(s);
             continue;
           }
           const diff = (d - s.len) / d / 2;
@@ -291,17 +299,13 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
       const cw = W / (cols - 1);
       const ch = H / (rows - 1);
       const idx = (x: number, y: number) => y * cols + x;
-      const linked = (a: number, b: number) => {
-        for (const s of sps) if (s.on && ((s.a === a && s.b === b) || (s.a === b && s.b === a))) return true;
-        return false;
-      };
       for (let y = 0; y < rows - 1; y++) {
         for (let x = 0; x < cols - 1; x++) {
           const i0 = idx(x, y);
           const i1 = idx(x + 1, y);
           const i2 = idx(x, y + 1);
           // a cell only exists while its top and left edges hold
-          if (!linked(i0, i1) || !linked(i0, i2)) continue;
+          if (!rightOn[i0] || !downOn[i0]) continue;
           const p0 = pts[i0]!;
           const p1 = pts[i1]!;
           const p2 = pts[i2]!;
