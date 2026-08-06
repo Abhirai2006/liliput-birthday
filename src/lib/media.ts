@@ -200,6 +200,8 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/friends-1.jpg", kind: "photo", caption: "One collage, three faces, her caption: \"sunny day.\"", orient: "p" },
       { src: "/media/family-1.jpg", kind: "photo", caption: "Back seat of a bus, cheeks being squeezed, no complaints filed.", orient: "p" },
       { src: "/media/v-friend.mp4", poster: "/media/v-friend.jpg", kind: "video", caption: "Twenty-two seconds of absolute nonsense.", orient: "l" },
+      { src: "/media/g-school-group.jpg", kind: "photo", caption: "The whole crowd of them, lined up outside the gate.", orient: "l" },
+      { src: "/media/n-mirror-two.jpg", kind: "photo", caption: "Two of them in one mirror, one phone between them.", orient: "p" },
     ],
   },
   {
