@@ -114,12 +114,10 @@ export const sareeShots: Shot[] = [
   { src: "/media/n-saree-a.jpg", kind: "photo", caption: "One hand on the pleats the entire day.", orient: "p" },
   { src: "/media/n-saree-c.jpg", kind: "photo", caption: "Five feet of North Karnataka.", orient: "p" },
   { src: "/media/n-saree-d.jpg", kind: "photo", caption: "Traditional day. Her Olympics.", orient: "p" },
-  { src: "/media/n-campus.jpg", kind: "photo", caption: "Campus, saree, someone's camera. Business as usual.", orient: "l" },
-  { src: "/media/n-saree-friend.jpg", kind: "photo", caption: "Classroom photoshoot, no permission asked.", orient: "p" },
   { src: "/media/n-trad-group.jpg", kind: "photo", caption: "The whole gang in silk.", orient: "l" },
-  { src: "/media/n-saree-two.jpg", kind: "photo", caption: "Mother and daughter. Same smile, older version.", orient: "l" },
-  { src: "/media/n-festival.jpg", kind: "photo", caption: "Festival colours and a stolen pair of sunglasses.", orient: "p" },
-  { src: "/media/n-temple.jpg", kind: "photo", caption: "Belagavi stone and a bell taller than her.", orient: "l" },
+  { src: "/media/n-saree-two.jpg", kind: "photo", caption: "Her mother in a saree, her beside her. Same smile, older version.", orient: "l" },
+  { src: "/media/g-red-saree-trees.jpg", kind: "photo", caption: "Red saree under green trees. Best combination she owns.", orient: "p" },
+  { src: "/media/g-green-saree.jpg", kind: "photo", caption: "Green and blue, night lights behind her, five feet of attitude.", orient: "p" },
 ];
 
 export const mistyShots: Shot[] = [
