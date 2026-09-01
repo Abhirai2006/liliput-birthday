@@ -1,35 +1,141 @@
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, OrbitControls, Sparkles } from "@react-three/drei";
-import type { Group, Mesh, PointLight } from "three";
+import { Float, OrbitControls, Sparkles, Text } from "@react-three/drei";
+import { AdditiveBlending, type Group, type Mesh, type PointLight } from "three";
+
+/** Sum of sines — cheap, smooth, non-repeating flicker. */
+function flicker(t: number, seed = 0) {
+  return (
+    Math.sin(t * 8.7 + seed) * 0.5 +
+    Math.sin(t * 14.3 + seed * 2.1) * 0.3 +
+    Math.sin(t * 23.1 + seed * 3.7) * 0.2
+  );
+}
 
 function Flame({ lit }: { lit: boolean }) {
-  const flame = useRef<Mesh>(null);
+  const core = useRef<Mesh>(null);
+  const mid = useRef<Mesh>(null);
+  const outer = useRef<Mesh>(null);
+  const glow = useRef<Mesh>(null);
   const light = useRef<PointLight>(null);
+  const grow = useRef(lit ? 1 : 0);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     const t = clock.getElapsedTime();
-    const wobble = 1 + Math.sin(t * 9) * 0.12 + Math.sin(t * 3.3) * 0.06;
-    if (flame.current) {
-      const s = lit ? wobble : 0.001;
-      flame.current.scale.set(s * 0.7, s, s * 0.7);
-      flame.current.position.x = lit ? Math.sin(t * 2.2) * 0.02 : 0;
+    // flame doesn't pop in/out — it grows and dies down
+    const target = lit ? 1 : 0;
+    grow.current += (target - grow.current) * Math.min(1, delta * (lit ? 6 : 9));
+    const g = grow.current;
+
+    const f = flicker(t);
+    const lean = Math.sin(t * 1.9) * 0.05 + f * 0.012;
+    const stretch = 1 + f * 0.14;
+
+    if (outer.current) {
+      outer.current.scale.set(g * (0.85 - f * 0.03), g * stretch, g * (0.85 - f * 0.03));
+      outer.current.position.x = lean;
+      outer.current.rotation.z = -lean * 1.6;
+    }
+    if (mid.current) {
+      const f2 = flicker(t, 1.3);
+      mid.current.scale.set(g * (0.62 + f2 * 0.03), g * (0.92 + f2 * 0.1), g * (0.62 + f2 * 0.03));
+      mid.current.position.x = lean * 0.7;
+      mid.current.rotation.z = -lean;
+    }
+    if (core.current) {
+      core.current.scale.setScalar(g * (0.42 + flicker(t, 2.6) * 0.04));
+      core.current.position.x = lean * 0.4;
+    }
+    if (glow.current) {
+      const s = g * (1 + f * 0.08);
+      glow.current.scale.set(s, s, s);
+      (glow.current.material as { opacity: number }).opacity = g * (0.3 + f * 0.06);
     }
     if (light.current) {
-      light.current.intensity = lit ? 6 + Math.sin(t * 11) * 1.6 : 0;
+      light.current.intensity = g * (7 + f * 2.4);
+      light.current.position.x = lean;
     }
   });
 
   return (
-    <group position={[0, 1.62, 0]}>
-      <mesh ref={flame}>
-        <sphereGeometry args={[0.09, 24, 24]} />
-        <meshStandardMaterial color="#ffd27a" emissive="#ffb347" emissiveIntensity={3} toneMapped={false} />
+    <group position={[0, 1.6, 0]}>
+      {/* soft halo */}
+      <mesh ref={glow} position={[0, 0.06, 0]}>
+        <sphereGeometry args={[0.34, 20, 20]} />
+        <meshBasicMaterial
+          color="#ff9a3c"
+          transparent
+          opacity={0.3}
+          blending={AdditiveBlending}
+          depthWrite={false}
+          toneMapped={false}
+        />
       </mesh>
-      <pointLight ref={light} color="#ffc36b" distance={7} decay={2} />
+      {/* outer envelope */}
+      <mesh ref={outer} position={[0, 0.1, 0]}>
+        <coneGeometry args={[0.09, 0.34, 24, 1, false]} />
+        <meshBasicMaterial
+          color="#ff7a18"
+          transparent
+          opacity={0.55}
+          blending={AdditiveBlending}
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+      {/* yellow body */}
+      <mesh ref={mid} position={[0, 0.07, 0]}>
+        <coneGeometry args={[0.075, 0.26, 24, 1, false]} />
+        <meshBasicMaterial
+          color="#ffd166"
+          transparent
+          opacity={0.85}
+          blending={AdditiveBlending}
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+      {/* white-hot core with the blue base */}
+      <mesh ref={core} position={[0, 0.03, 0]}>
+        <sphereGeometry args={[0.075, 20, 20]} />
+        <meshBasicMaterial color="#fffbe8" toneMapped={false} />
+      </mesh>
+      <mesh position={[0, -0.02, 0]} scale={lit ? 1 : 0.001}>
+        <sphereGeometry args={[0.045, 16, 16]} />
+        <meshBasicMaterial
+          color="#5fa8ff"
+          transparent
+          opacity={0.5}
+          blending={AdditiveBlending}
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+      <pointLight ref={light} color="#ffb45e" distance={8} decay={2} />
+      {lit && (
+        <Sparkles count={14} scale={[0.35, 0.9, 0.35]} size={1.4} speed={0.9} noise={2} color="#ffb14d" />
+      )}
     </group>
   );
 }
+
+function Greeting() {
+  const common = useMemo(
+    () => ({ font: "/fonts/GreatVibes-Regular.ttf", anchorX: "center" as const, anchorY: "middle" as const }),
+    [],
+  );
+  return (
+    <group position={[0, 1.06, 0.92]} rotation={[0, 0, 0]}>
+      <Text {...common} fontSize={0.19} color="#fff6ec" outlineWidth={0.004} outlineColor="#d9557a">
+        Happy Birthday
+      </Text>
+      <Text {...common} position={[0, -0.22, 0]} fontSize={0.26} color="#ffd9a8" outlineWidth={0.004} outlineColor="#d9557a">
+        Aishu
+      </Text>
+    </group>
+  );
+}
+
 
 function Cake({ lit }: { lit: boolean }) {
   const group = useRef<Group>(null);
