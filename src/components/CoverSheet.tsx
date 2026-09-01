@@ -40,6 +40,9 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
     }
   }, []);
 
+  const dismissHintRef = useRef(dismissHint);
+  dismissHintRef.current = dismissHint;
+
   const finish = useCallback(() => {
     if (doneRef.current) return;
     doneRef.current = true;
@@ -417,7 +420,10 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
       ) : null}
       <button
         type="button"
-        onClick={finish}
+        onClick={() => {
+          dismissHint();
+          finish();
+        }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full border border-border/60 bg-background/40 px-4 py-2 text-xs uppercase tracking-[0.3em] text-muted-foreground backdrop-blur"
       >
         skip
