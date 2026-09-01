@@ -125,11 +125,11 @@ function Greeting() {
     [],
   );
   return (
-    <group position={[0, 1.06, 0.92]} rotation={[0, 0, 0]}>
-      <Text {...common} fontSize={0.19} color="#fff6ec" outlineWidth={0.004} outlineColor="#d9557a">
+    <group position={[0, 0.34, 1.36]}>
+      <Text {...common} fontSize={0.2} color="#fff6ec" outlineWidth={0.004} outlineColor="#d9557a">
         Happy Birthday
       </Text>
-      <Text {...common} position={[0, -0.22, 0]} fontSize={0.26} color="#ffd9a8" outlineWidth={0.004} outlineColor="#d9557a">
+      <Text {...common} position={[0, -0.24, 0.005]} fontSize={0.28} color="#ffd9a8" outlineWidth={0.004} outlineColor="#d9557a">
         Aishu
       </Text>
     </group>
@@ -140,7 +140,7 @@ function Greeting() {
 function Cake({ lit }: { lit: boolean }) {
   const group = useRef<Group>(null);
   useFrame(({ clock }) => {
-    if (group.current) group.current.rotation.y = clock.getElapsedTime() * 0.22;
+    if (group.current) group.current.rotation.y = clock.getElapsedTime() * 0.14;
   });
 
   const berries = Array.from({ length: 10 }, (_, i) => {
@@ -189,6 +189,7 @@ function Cake({ lit }: { lit: boolean }) {
         <cylinderGeometry args={[0.012, 0.012, 0.06, 8]} />
         <meshStandardMaterial color="#4a3a2a" />
       </mesh>
+      <Greeting />
       <Flame lit={lit} />
       {lit && <Sparkles count={40} scale={[3.2, 2.4, 3.2]} size={2.4} speed={0.35} color="#ffd9a0" />}
     </group>
