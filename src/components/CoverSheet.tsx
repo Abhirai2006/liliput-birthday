@@ -14,10 +14,31 @@ import { useCallback, useEffect, useRef, useState } from "react";
  *  3. spring relaxation (several passes) — springs over their break length snap
  *  4. pinned points held at the top edge until the sheet is mostly torn
  */
+const HINT_KEY = "subbi.tearHintSeen";
+
 export default function CoverSheet({ onDone }: { onDone: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [gone, setGone] = useState(false);
+  const [hint, setHint] = useState(false);
   const doneRef = useRef(false);
+
+  // first visit only — once she's seen it, it never shows again
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem(HINT_KEY)) setHint(true);
+    } catch {
+      setHint(true);
+    }
+  }, []);
+
+  const dismissHint = useCallback(() => {
+    setHint(false);
+    try {
+      localStorage.setItem(HINT_KEY, "1");
+    } catch {
+      /* private mode — nothing to remember it with */
+    }
+  }, []);
 
   const finish = useCallback(() => {
     if (doneRef.current) return;
@@ -158,6 +179,8 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
     };
     resize();
 
+    const hideHint = () => dismissHintRef.current();
+
     /* ── pointer: tearing + dragging ── */
     let down = false;
     let mx = -1;
@@ -212,6 +235,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
 
     const onDown = (e: PointerEvent) => {
       const { x, y } = pos(e);
+      hideHint();
       down = true;
       mx = lastX = x;
       my = lastY = y;
@@ -381,6 +405,16 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
       className={`fixed inset-0 z-[70] transition-opacity duration-[900ms] ${gone ? "pointer-events-none opacity-0" : "opacity-100"}`}
     >
       <canvas ref={canvasRef} className="block h-full w-full touch-none" />
+      {hint && !gone ? (
+        <div className="pointer-events-none absolute inset-x-0 bottom-24 flex flex-col items-center gap-3">
+          <div className="relative h-1.5 w-44 overflow-hidden rounded-full bg-background/30">
+            <span className="absolute inset-y-0 -left-1/3 w-1/3 animate-[tearhint_1.8s_ease-in-out_infinite] rounded-full bg-candle-soft/80" />
+          </div>
+          <p className="rounded-full bg-background/40 px-4 py-1.5 font-hand text-lg text-foreground/90 backdrop-blur">
+            drag to tear
+          </p>
+        </div>
+      ) : null}
       <button
         type="button"
         onClick={finish}
