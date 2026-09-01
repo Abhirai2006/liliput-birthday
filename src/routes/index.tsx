@@ -14,7 +14,6 @@ import Lightbox from "@/components/Lightbox";
 import SingingPlayer from "@/components/SingingPlayer";
 import AgeReveal from "@/components/AgeReveal";
 import CoverSheet from "@/components/CoverSheet";
-import PolaroidWall from "@/components/PolaroidWall";
 import {
   chapters,
   newChapters,
@@ -74,6 +73,28 @@ function BirthdayPage() {
 
   const unlock = useCallback(() => setState("open"), []);
 
+  const celebrate = useCallback(() => {
+    setWrapped(false);
+    const shoot = (x: number, y: number, delay: number, count: number) =>
+      window.setTimeout(
+        () =>
+          confetti({
+            particleCount: count,
+            spread: 78,
+            startVelocity: 46,
+            scalar: 1.05,
+            ticks: 220,
+            origin: { x, y },
+            colors: ["#ffd27a", "#ffb0c4", "#fff6ec", "#d9557a", "#ffe9c9"],
+          }),
+        delay,
+      );
+    shoot(0.5, 0.62, 60, 120);
+    shoot(0.12, 0.75, 260, 70);
+    shoot(0.88, 0.75, 380, 70);
+    shoot(0.5, 0.4, 620, 90);
+  }, []);
+
   const blow = useCallback(() => {
     setLit(false);
     confetti({
@@ -94,7 +115,7 @@ function BirthdayPage() {
 
   return (
     <>
-      {wrapped ? <CoverSheet onDone={() => setWrapped(false)} /> : null}
+      {wrapped ? <CoverSheet onDone={celebrate} /> : null}
 
       <div className="pointer-events-none fixed inset-0 -z-10">
         <StarField density={0.9} />
@@ -168,8 +189,6 @@ function BirthdayPage() {
           <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
         ))}
 
-        <PolaroidWall shots={wallShots} onOpen={setShot} />
-
         {newChapters.map((c) => (
           <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
         ))}
@@ -177,6 +196,13 @@ function BirthdayPage() {
         {augChapters.map((c) => (
           <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
         ))}
+
+        <Chapter
+          title="Six I keep coming back to"
+          note="No theme, no year, no reason — just the six photos I open first every time I go looking."
+          shots={wallShots}
+          onOpen={setShot}
+        />
 
         <Chapter
           title="Saree days"

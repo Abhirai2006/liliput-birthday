@@ -225,3 +225,10 @@
   }
 }
 
+
+@keyframes tearhint {
+  0% { transform: translateX(0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(320%); opacity: 0; }
+}
