@@ -49,7 +49,7 @@ function Flame({ lit }: { lit: boolean }) {
     if (glow.current) {
       const s = g * (1 + f * 0.08);
       glow.current.scale.set(s, s, s);
-      (glow.current.material as { opacity: number }).opacity = g * (0.3 + f * 0.06);
+      (glow.current.material as { opacity: number }).opacity = g * (0.16 + f * 0.04);
     }
     if (light.current) {
       light.current.intensity = g * (7 + f * 2.4);
@@ -61,11 +61,11 @@ function Flame({ lit }: { lit: boolean }) {
     <group position={[0, 1.6, 0]}>
       {/* soft halo */}
       <mesh ref={glow} position={[0, 0.06, 0]}>
-        <sphereGeometry args={[0.34, 20, 20]} />
+        <sphereGeometry args={[0.22, 20, 20]} />
         <meshBasicMaterial
           color="#ff9a3c"
           transparent
-          opacity={0.3}
+          opacity={0.18}
           blending={AdditiveBlending}
           depthWrite={false}
           toneMapped={false}
@@ -125,11 +125,11 @@ function Greeting() {
     [],
   );
   return (
-    <group position={[0, 0.34, 1.36]}>
-      <Text {...common} fontSize={0.2} color="#fff6ec" outlineWidth={0.004} outlineColor="#d9557a">
+    <group position={[0, 1.315, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <Text {...common} position={[0, 0.3, 0]} fontSize={0.15} color="#fff6ec" outlineWidth={0.004} outlineColor="#d9557a">
         Happy Birthday
       </Text>
-      <Text {...common} position={[0, -0.24, 0.005]} fontSize={0.28} color="#ffd9a8" outlineWidth={0.004} outlineColor="#d9557a">
+      <Text {...common} position={[0, -0.34, 0]} fontSize={0.22} color="#ffd9a8" outlineWidth={0.004} outlineColor="#d9557a">
         Aishu
       </Text>
     </group>

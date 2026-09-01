@@ -409,7 +409,7 @@ export default function CoverSheet({ onDone }: { onDone: () => void }) {
     >
       <canvas ref={canvasRef} className="block h-full w-full touch-none" />
       {hint && !gone ? (
-        <div className="pointer-events-none absolute inset-x-0 bottom-24 flex flex-col items-center gap-3">
+        <div className="pointer-events-none absolute inset-x-0 top-16 flex flex-col items-center gap-3">
           <div className="relative h-1.5 w-44 overflow-hidden rounded-full bg-background/30">
             <span className="absolute inset-y-0 -left-1/3 w-1/3 animate-[tearhint_1.8s_ease-in-out_infinite] rounded-full bg-candle-soft/80" />
           </div>
