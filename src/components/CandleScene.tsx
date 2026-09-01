@@ -1,7 +1,7 @@
 import { Suspense, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, OrbitControls, Sparkles, Text } from "@react-three/drei";
-import { AdditiveBlending, type Group, type Mesh, type PointLight } from "three";
+import { AdditiveBlending, CanvasTexture, type Group, type Mesh, type PointLight } from "three";
 
 /** Sum of sines — cheap, smooth, non-repeating flicker. */
 function flicker(t: number, seed = 0) {
@@ -19,6 +19,21 @@ function Flame({ lit }: { lit: boolean }) {
   const glow = useRef<Mesh>(null);
   const light = useRef<PointLight>(null);
   const grow = useRef(lit ? 1 : 0);
+
+  const halo = useMemo(() => {
+    const c = document.createElement("canvas");
+    c.width = c.height = 128;
+    const g = c.getContext("2d")!;
+    const rad = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    rad.addColorStop(0, "rgba(255,255,255,1)");
+    rad.addColorStop(0.25, "rgba(255,190,110,0.55)");
+    rad.addColorStop(0.6, "rgba(255,140,60,0.16)");
+    rad.addColorStop(1, "rgba(255,120,40,0)");
+    g.fillStyle = rad;
+    g.fillRect(0, 0, 128, 128);
+    const tex = new CanvasTexture(c);
+    return tex;
+  }, []);
 
   useFrame(({ clock }, delta) => {
     const t = clock.getElapsedTime();
@@ -49,7 +64,7 @@ function Flame({ lit }: { lit: boolean }) {
     if (glow.current) {
       const s = g * (1 + f * 0.08);
       glow.current.scale.set(s, s, s);
-      (glow.current.material as { opacity: number }).opacity = g * (0.16 + f * 0.04);
+      (glow.current.material as { opacity: number }).opacity = g * (0.45 + f * 0.1);
     }
     if (light.current) {
       light.current.intensity = g * (7 + f * 2.4);
@@ -59,15 +74,17 @@ function Flame({ lit }: { lit: boolean }) {
 
   return (
     <group position={[0, 1.6, 0]}>
-      {/* soft halo */}
-      <mesh ref={glow} position={[0, 0.06, 0]}>
-        <sphereGeometry args={[0.22, 20, 20]} />
+      {/* soft halo — a radial-gradient sprite, so it fades out instead of ending in an edge */}
+      <mesh ref={glow} position={[0, 0.08, 0]}>
+        <planeGeometry args={[1.1, 1.1]} />
         <meshBasicMaterial
-          color="#ff9a3c"
+          map={halo}
+          color="#ffa544"
           transparent
-          opacity={0.18}
+          opacity={0.5}
           blending={AdditiveBlending}
           depthWrite={false}
+          depthTest={false}
           toneMapped={false}
         />
       </mesh>
@@ -125,11 +142,11 @@ function Greeting() {
     [],
   );
   return (
-    <group position={[0, 1.315, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <Text {...common} position={[0, 0.3, 0]} fontSize={0.15} color="#fff6ec" outlineWidth={0.004} outlineColor="#d9557a">
+    <group position={[0, 0.38, 1.34]}>
+      <Text {...common} position={[0, 0.13, 0]} fontSize={0.16} color="#fff6ec" outlineWidth={0.004} outlineColor="#d9557a">
         Happy Birthday
       </Text>
-      <Text {...common} position={[0, -0.34, 0]} fontSize={0.22} color="#ffd9a8" outlineWidth={0.004} outlineColor="#d9557a">
+      <Text {...common} position={[0, -0.14, 0]} fontSize={0.24} color="#ffd9a8" outlineWidth={0.004} outlineColor="#d9557a">
         Aishu
       </Text>
     </group>
@@ -140,7 +157,7 @@ function Greeting() {
 function Cake({ lit }: { lit: boolean }) {
   const group = useRef<Group>(null);
   useFrame(({ clock }) => {
-    if (group.current) group.current.rotation.y = clock.getElapsedTime() * 0.14;
+    if (group.current) group.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.32) * 0.5;
   });
 
   const berries = Array.from({ length: 10 }, (_, i) => {
