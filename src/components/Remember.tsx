@@ -18,12 +18,12 @@ export default function Remember() {
           transition={{ duration: 0.9 }}
           className="min-w-0"
         >
-          <p className="text-[0.65rem] uppercase tracking-[0.4em] text-primary">a small thing</p>
+          <p className="text-[0.65rem] uppercase tracking-[0.4em] text-primary">A SMALL GESTURE</p>
           <h2 className="mt-4 font-hand text-4xl leading-tight text-accent sm:text-5xl">
             do u remember this?
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            SR drew this for her the day she was leaving Mysuru for the holidays — engineering
+            SR drew this for her the day she was leaving Mysuru for the holidays - engineering
             classes shut, bags packed, hometown waiting. One sticky note, one winking Eevee, and a
             &ldquo;See ya soon!!&rdquo; that she kept.
           </p>
