@@ -24,14 +24,14 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/v-look.mp4", poster: "/media/v-look.jpg", kind: "video", caption: "Six seconds of nothing happening. Watched more times than I'll admit.", orient: "p" },
       { src: "/media/her-04.jpg", kind: "photo", caption: "Hearts in the hair. Somebody's in a good mood.", orient: "p" },
       { src: "/media/her-12.jpg", kind: "photo", caption: "Mid-sentence, mid-story, mid-complaint. Peak Subbi.", orient: "p" },
-      { src: "/media/her-14.jpg", kind: "photo", caption: "Lying down, phone up, world ignored.", orient: "p" },
-      { src: "/media/v-soft.mp4", poster: "/media/v-soft.jpg", kind: "video", caption: "Earphones in. Do not disturb.", orient: "p" },
+      { src: "/media/her-14.jpg", kind: "photo", caption: "Phone up, world ignored.", orient: "p" },
+      { src: "/media/v-soft.mp4", poster: "/media/v-soft.jpg", kind: "video", caption: "Akka full kush mood.", orient: "p" },
       { src: "/media/her-15.jpg", kind: "photo", caption: "This one is my favourite and she'll never know why.", orient: "p" },
-      { src: "/media/her-09.jpg", kind: "photo", caption: "Face pack on, dignity off. Still laughing.", orient: "p" },
+      { src: "/media/her-09.jpg", kind: "photo", caption: "Face pack (multani mitti) on, dignity off. Still laughing.", orient: "p" },
       { src: "/media/her-11.jpg", kind: "photo", caption: "Caught doing something completely useless. Delighted about it.", orient: "p" },
       { src: "/media/her-16.jpg", kind: "photo", caption: "\"Combed without comb.\" Her words, not mine.", orient: "p" },
       { src: "/media/her-01.jpg", kind: "photo", caption: "Uffff. That was the whole caption. That was enough.", orient: "p" },
-      { src: "/media/n-chat.jpg", kind: "photo", caption: "Hostel mirror, phone already up, nowhere to be.", orient: "p" },
+      { src: "/media/n-chat.jpg", kind: "photo", caption: "Zudio mirror, phone already up, nowhere to be.", orient: "p" },
       { src: "/media/her-13.jpg", kind: "photo", caption: "Old pictures, older versions of her. Same face.", orient: "p" },
     ],
 
@@ -43,7 +43,7 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/dress-01.jpg", kind: "photo", caption: "Mirror check number four hundred.", orient: "p" },
       { src: "/media/dress-02.jpg", kind: "photo", caption: "Green suits her. She knows. That's why the pose.", orient: "p" },
       { src: "/media/dress-03.jpg", kind: "photo", caption: "White dress, small shoes, big attitude — all five feet of it.", orient: "p" },
-      { src: "/media/v-mirror.mp4", poster: "/media/v-mirror.jpg", kind: "video", caption: "The final check before leaving. There is always a final check.", orient: "p" },
+      { src: "/media/v-mirror.mp4", poster: "/media/v-mirror.jpg", kind: "video", caption: "The final check before leaving for a walk with her baddies. There is always a final check.", orient: "p" },
       { src: "/media/her-02.jpg", kind: "photo", caption: "\"This one?\" Yes. That one.", orient: "p" },
       { src: "/media/her-10.jpg", kind: "photo", caption: "On a call, dressed up anyway.", orient: "p" },
     ],
@@ -53,10 +53,10 @@ export const chapters: { title: string; note: string; shots: Shot[] }[] = [
     note: "Give her a mall, a bus, and a whole day. She'll come back with three bags and one story you'll hear four times.",
     shots: [
       { src: "/media/shopping-1.jpg", kind: "photo", caption: "Garuda Mall, Mysuru. Reporting live from her natural habitat.", orient: "p" },
-      { src: "/media/v-ride.mp4", poster: "/media/v-ride.jpg", kind: "video", caption: "\"Thanks for the dream ridee.\" Pink kurta, open road.", orient: "l" },
+      { src: "/media/v-ride.mp4", poster: "/media/v-ride.jpg", kind: "video", caption: "\"Thanks for the dream ridee.\" Pink kurta, open road thankyou kruthi.", orient: "l" },
       { src: "/media/her-07.jpg", kind: "photo", caption: "Sitting on a ledge somewhere, thinking about something.", orient: "p" },
       { src: "/media/her-08.jpg", kind: "photo", caption: "College ID still on. Day one energy.", orient: "p" },
-      { src: "/media/n-mall.jpg", kind: "photo", caption: "Shop mirror with Anushree. Nothing was bought. Nothing ever is.", orient: "p" },
+      { src: "/media/n-mall.jpg", kind: "photo", caption: "Shop mirror with Anu. Nothing was bought. Nothing ever is.", orient: "p" },
       { src: "/media/her-06.jpg", kind: "photo", caption: "Filters, hearts, whatever. Still the same girl underneath.", orient: "p" },
       { src: "/media/g-sitting.jpg", kind: "photo", caption: "Sitting on a ledge, phone in hand, waiting for someone to be ready.", orient: "p" },
       { src: "/media/g-hills.jpg", kind: "photo", caption: "Yellow bushes, hills behind her, hair everywhere.", orient: "l" },
@@ -103,7 +103,7 @@ export const songs: Song[] = [
 ];
 
 export const childhoodShots: Shot[] = [
-  { src: "/media/n-kid-c.jpg", kind: "photo", caption: "Ainapur, a very long time ago. Same eyes, smaller everything.", orient: "p" },
+  { src: "/media/n-kid-c.jpg", kind: "photo", caption: "Ainapur, a very long time ago. Same eyes, smaller everything. She on the lap of an MLA", orient: "p" },
   { src: "/media/n-kid-a.jpg", kind: "photo", caption: "Two plaits, one dress, zero doubts.", orient: "l" },
   { src: "/media/n-with-appa.jpg", kind: "photo", caption: "Held steady by her Appa. She was tiny even then.", orient: "p" },
   { src: "/media/n-kid-b.jpg", kind: "photo", caption: "The face she still makes at cameras, twenty years later.", orient: "p" },
@@ -239,10 +239,10 @@ export const schoolShots: Shot[] = [
 
 export const kidPrints: Shot[] = [
   { src: "/media/g-kid-frame.jpg", kind: "photo", caption: "An actual printed photo, kept in an actual frame. Ainapur.", orient: "l" },
-  { src: "/media/g-kid-two.jpg", kind: "photo", caption: "Two small girls, one very serious expression.", orient: "p" },
+  { src: "/media/g-kid-two.jpg", kind: "photo", caption: "Two small kids, one very serious expression.", orient: "p" },
   { src: "/media/g-kid-bed.jpg", kind: "photo", caption: "Before phones, before filters, before everything.", orient: "l" },
-  { src: "/media/g-kid-waterfall.jpg", kind: "photo", caption: "First family trip photo she'll still describe in full detail.", orient: "l" },
-  { src: "/media/g-kid-temple.jpg", kind: "photo", caption: "Temple steps, tiny sandals, hand held tight.", orient: "p" },
+  { src: "/media/g-kid-waterfall.jpg", kind: "photo", caption: "Sujatha akka still kept this album  ", orient: "l" },
+  { src: "/media/g-kid-temple.jpg", kind: "photo", caption: "Temple steps, tiny sandals, hand held tight by her brother mankiya.", orient: "p" },
 ];
 
 /** The wall — pinned polaroids, straight out of the reel he sent me. */
@@ -257,18 +257,18 @@ export const wallShots: Shot[] = [
 
 export const augChapters: { title: string; note: string; shots: Shot[] }[] = [
   {
-    title: "The old phone folder",
-    note: "Grainy, badly lit, taken on a phone that's long dead. Somehow the best ones in the whole lot.",
+    title: "She being herself",
+    note: "Nothing to write here. ",
     shots: [
       { src: "/media/g-lying-a.jpg", kind: "photo", caption: "Orange wall, printed top, no audience.", orient: "l" },
       { src: "/media/g-lying-b.jpg", kind: "photo", caption: "Same wall, same afternoon, twelve more photos.", orient: "l" },
-      { src: "/media/g-blue-collar.jpg", kind: "photo", caption: "Blue collar tee and the doorway she always stood in.", orient: "l" },
+      { src: "/media/g-blue-collar.jpg", kind: "photo", caption: "Blue collar tee and the doorway she always stood in. don't tell anyone it was Kruthi T-shirt", orient: "l" },
       { src: "/media/g-lying-c.jpg", kind: "photo", caption: "Black tee, big hair, curls doing whatever they wanted.", orient: "l" },
       { src: "/media/g-close.jpg", kind: "photo", caption: "Too close to the camera. Still came out well.", orient: "l" },
       { src: "/media/g-squint.jpg", kind: "photo", caption: "Lying down, hair across her face, phone light on.", orient: "l" },
-      { src: "/media/g-dark-soft.jpg", kind: "photo", caption: "Hand on cheek, one lamp on, everyone asleep.", orient: "p" },
-      { src: "/media/g-white-dress.jpg", kind: "photo", caption: "White dress on a gravel driveway. Accidentally magazine-worthy.", orient: "p" },
-      { src: "/media/g-framed.jpg", kind: "photo", caption: "Somebody's function, gift in hand, completely done with waiting.", orient: "p" },
+      { src: "/media/g-dark-soft.jpg", kind: "photo", caption: "Hand on cheek, one flash on, everyone asleep.", orient: "p" },
+      { src: "/media/g-white-dress.jpg", kind: "photo", caption: "White dress on our college day. Accidentally magazine-worthy.", orient: "p" },
+      { src: "/media/g-framed.jpg", kind: "photo", caption: "Somebody's function, completely done with waiting. Thankyou Camera man and aslo gemini bhai", orient: "p" },
     ],
   },
   {
