@@ -3,7 +3,7 @@ import { motion, useInView } from "motion/react";
 import { idCard } from "@/lib/media";
 
 const LINES = [
-  "Aishwarya M Teli. Ganiger.",
+  "Aishwarya Mahesh Teli.",
   "Subbi to the people who love her.",
   "Lilliput to exactly one person, because five feet is five feet.",
   "And that one person she decided to call Pappa.",
