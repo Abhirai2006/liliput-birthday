@@ -216,7 +216,7 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/nv-mug.mp4", poster: "/media/nv-mug.jpg", kind: "video", caption: "Cow-print mug, cow-print filter. Commitment.", orient: "p" },
       { src: "/media/nv-lying.mp4", poster: "/media/nv-lying.jpg", kind: "video", caption: "Half asleep, still recording.", orient: "p" },
       { src: "/media/gv-thumbs2.mp4", poster: "/media/gv-thumbs2.jpg", kind: "video", caption: "Two thumbs up on the 31st. Nothing to celebrate.", orient: "p" },
-      { src: "/media/gv-dogfilter.mp4", poster: "/media/gv-dogfilter.jpg", kind: "video", caption: "Dog filters, outdoors, no shame at all.", orient: "p" },
+  { src: "/media/gv-dogfilter.mp4", poster: "/media/gv-dogfilter.jpg", kind: "video", caption: "Dog filters, outdoors, no shame at all. ", orient: "p" },
     ],
   },
 ];
@@ -227,7 +227,7 @@ export const newChapters: { title: string; note: string; shots: Shot[] }[] = [
 /** The two of us, and the people from school. He named these one by one. */
 export const usShots: Shot[] = [
   { src: "/media/g-us-campus.jpg", kind: "photo", caption: "Her in a saree, me pretending I wasn't nervous about the photo.", orient: "l" },
-  { src: "/media/g-us-rooftop.jpg", kind: "photo", caption: "Dinner, night lights, and about four hours of talking.", orient: "p" },
+  { src: "/media/g-us-rooftop.jpg", kind: "photo", caption: "Thankyou Preetham for the party", orient: "p" },
 ];
 
 export const schoolShots: Shot[] = [
