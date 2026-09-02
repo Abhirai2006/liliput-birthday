@@ -219,7 +219,7 @@ function Cake({ lit }: { lit: boolean }) {
       out.push({
         pos: [Math.cos(a) * r, y, Math.sin(a) * r],
         rot: [rnd() * Math.PI, rnd() * Math.PI, rnd() * Math.PI],
-        color: palette[i % palette.length],
+        color: palette[i % palette.length]!,
       });
     }
     return out;
@@ -234,7 +234,7 @@ function Cake({ lit }: { lit: boolean }) {
         return {
           x: Math.cos(a) * 1.5,
           z: Math.sin(a) * 1.5,
-          color: palette[i % palette.length],
+          color: palette[i % palette.length]!,
           key: i,
         };
       }),
