@@ -204,7 +204,7 @@ function Cake({ lit }: { lit: boolean }) {
 
   // colourful sprinkles scattered across both tiers' tops
   const sprinkles = useMemo(() => {
-    const palette = ["#d9557a", "#ffd27a", "#9bd2ff", "#c4a6ff", "#8fe6b4", "#fff6ec"];
+    const palette = ["#d9557a", "#ffd27a", "#9bd2ff", "#c4a6ff", "#8fe6b4", "#fff6ec"] as const;
     const out: { pos: [number, number, number]; rot: [number, number, number]; color: string }[] = [];
     let seed = 7;
     const rnd = () => {
@@ -230,7 +230,7 @@ function Cake({ lit }: { lit: boolean }) {
     () =>
       Array.from({ length: 7 }, (_, i) => {
         const a = (i / 7) * Math.PI * 2 + 0.3;
-        const palette = ["#ffd9a8", "#ffb0c4", "#c4a6ff", "#9bd2ff", "#8fe6b4"];
+        const palette = ["#ffd9a8", "#ffb0c4", "#c4a6ff", "#9bd2ff", "#8fe6b4"] as const;
         return {
           x: Math.cos(a) * 1.5,
           z: Math.sin(a) * 1.5,
