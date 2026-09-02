@@ -179,7 +179,7 @@ function BirthdayPage() {
         />
 
         <Chapter
-          title="School, not college"
+          title="College"
           note="Uniforms, ID cards, back benches, and the physics teacher she actually liked."
           shots={schoolShots}
           onOpen={setShot}
