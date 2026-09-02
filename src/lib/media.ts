@@ -122,7 +122,7 @@ export const sareeShots: Shot[] = [
 
 export const mistyShots: Shot[] = [
   { src: "/media/n-dog-a.jpg", kind: "photo", caption: "Misty. Official cuddle partner, her words.", orient: "p" },
-  { src: "/media/n-dog-b.jpg", kind: "photo", caption: "Somebody is getting all her attention and it isn't me.", orient: "p" },
+  { src: "/media/n-dog-b.jpg", kind: "photo", caption: "Somebody is getting all her attention and it isn't her daa papa.", orient: "p" },
   { src: "/media/n-dog-c.jpg", kind: "photo", caption: "This is what she sends instead of replying.", orient: "l" },
 ];
 
@@ -250,7 +250,7 @@ export const wallShots: Shot[] = [
   { src: "/media/g-chin.jpg", kind: "photo", caption: "Chin on hand, thinking about something she won't tell me.", orient: "p" },
   { src: "/media/g-sunset-look.jpg", kind: "photo", caption: "Peach top against a sunset sky. She turned at exactly the right second.", orient: "l" },
   { src: "/media/g-pink-gown.jpg", kind: "photo", caption: "Pink, floor-length, entirely unnecessary. Loved it anyway.", orient: "p" },
-  { src: "/media/g-lamps.jpg", kind: "photo", caption: "Lamp posts by the water and a whole evening free.", orient: "p" },
+  { src: "/media/g-lamps.jpg", kind: "photo", caption: "Lamp posts by the exhibition and a whole evening free.", orient: "p" },
   { src: "/media/n-dogfilter.jpg", kind: "photo", caption: "Dog ears, no shame, sent at 2am.", orient: "p" },
   { src: "/media/g-rcb.jpg", kind: "photo", caption: "RCB jersey, number 18. Same number as her birthday.", orient: "p" },
 ];
