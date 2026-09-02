@@ -121,6 +121,13 @@ function BirthdayPage() {
         <StarField density={0.9} />
       </div>
 
+      {/* playful side nickname */}
+      <div className="pointer-events-none fixed left-1 top-1/2 z-30 -translate-y-1/2 [writing-mode:vertical-rl] rotate-180 sm:left-2">
+        <span className="font-hand text-xl tracking-[0.35em] text-primary/45">
+          Huch Aish
+        </span>
+      </div>
+
       <main className="overflow-x-clip">
         <section className="relative flex min-h-screen flex-col items-center justify-center px-5 py-16 text-center">
           <motion.p
