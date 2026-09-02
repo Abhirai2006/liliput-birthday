@@ -121,9 +121,9 @@ function BirthdayPage() {
         <StarField density={0.9} />
       </div>
 
-      {/* playful side nickname */}
-      <div className="pointer-events-none fixed left-1 top-1/2 z-30 -translate-y-1/2 [writing-mode:vertical-rl] rotate-180 sm:left-2">
-        <span className="font-hand text-xl tracking-[0.35em] text-primary/45">
+      {/* playful side nickname — tucked low, easy to miss */}
+      <div className="pointer-events-none fixed bottom-3 right-4 z-30">
+        <span className="font-hand text-sm tracking-[0.25em] text-primary/25">
           Huch Aish
         </span>
       </div>
