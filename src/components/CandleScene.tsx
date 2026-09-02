@@ -160,10 +160,86 @@ function Cake({ lit }: { lit: boolean }) {
     if (group.current) group.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.32) * 0.5;
   });
 
-  const berries = Array.from({ length: 10 }, (_, i) => {
-    const a = (i / 10) * Math.PI * 2;
-    return [Math.cos(a) * 1.02, 0.78, Math.sin(a) * 1.02] as const;
-  });
+  // berries scattered on the bottom tier's top surface
+  const berries = useMemo(
+    () =>
+      Array.from({ length: 10 }, (_, i) => {
+        const a = (i / 10) * Math.PI * 2;
+        return [Math.cos(a) * 1.02, 0.78, Math.sin(a) * 1.02] as const;
+      }),
+    [],
+  );
+
+  // piped cream rosettes around the bottom tier's rim
+  const rosettes = useMemo(
+    () =>
+      Array.from({ length: 14 }, (_, i) => {
+        const a = (i / 14) * Math.PI * 2;
+        return [Math.cos(a) * 1.3, 0.8, Math.sin(a) * 1.3] as const;
+      }),
+    [],
+  );
+
+  // icing drips running down the top tier's sides
+  const drips = useMemo(
+    () =>
+      Array.from({ length: 11 }, (_, i) => {
+        const a = (i / 11) * Math.PI * 2 + 0.15;
+        const r = 0.87;
+        const len = 0.14 + ((i * 7) % 5) * 0.05; // 0.14 .. 0.34
+        return { x: Math.cos(a) * r, z: Math.sin(a) * r, len, key: i };
+      }),
+    [],
+  );
+
+  // berries around the top tier's rim
+  const topBerries = useMemo(
+    () =>
+      Array.from({ length: 9 }, (_, i) => {
+        const a = (i / 9) * Math.PI * 2;
+        return [Math.cos(a) * 0.82, 1.36, Math.sin(a) * 0.82] as const;
+      }),
+    [],
+  );
+
+  // colourful sprinkles scattered across both tiers' tops
+  const sprinkles = useMemo(() => {
+    const palette = ["#d9557a", "#ffd27a", "#9bd2ff", "#c4a6ff", "#8fe6b4", "#fff6ec"];
+    const out: { pos: [number, number, number]; rot: [number, number, number]; color: string }[] = [];
+    let seed = 7;
+    const rnd = () => {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    };
+    for (let i = 0; i < 26; i++) {
+      const onTop = rnd() > 0.5;
+      const r = rnd() * (onTop ? 0.7 : 1.15);
+      const a = rnd() * Math.PI * 2;
+      const y = onTop ? 1.31 : 0.73;
+      out.push({
+        pos: [Math.cos(a) * r, y, Math.sin(a) * r],
+        rot: [rnd() * Math.PI, rnd() * Math.PI, rnd() * Math.PI],
+        color: palette[i % palette.length],
+      });
+    }
+    return out;
+  }, []);
+
+  // little sugar flowers around the base of the plate
+  const baseFlowers = useMemo(
+    () =>
+      Array.from({ length: 7 }, (_, i) => {
+        const a = (i / 7) * Math.PI * 2 + 0.3;
+        const palette = ["#ffd9a8", "#ffb0c4", "#c4a6ff", "#9bd2ff", "#8fe6b4"];
+        return {
+          x: Math.cos(a) * 1.5,
+          z: Math.sin(a) * 1.5,
+          color: palette[i % palette.length],
+          key: i,
+        };
+      }),
+    [],
+  );
 
   return (
     <group ref={group} position={[0, -0.7, 0]}>
@@ -172,6 +248,26 @@ function Cake({ lit }: { lit: boolean }) {
         <cylinderGeometry args={[1.65, 1.7, 0.08, 64]} />
         <meshStandardMaterial color="#e8e2f2" metalness={0.35} roughness={0.35} />
       </mesh>
+
+      {/* sugar flowers around the base */}
+      {baseFlowers.map((f) => (
+        <group key={`f-${f.key}`} position={[f.x, -0.02, f.z]}>
+          {[0, 1, 2, 3, 4].map((p) => {
+            const a = (p / 5) * Math.PI * 2;
+            return (
+              <mesh key={p} position={[Math.cos(a) * 0.06, 0, Math.sin(a) * 0.06]}>
+                <sphereGeometry args={[0.05, 12, 12]} />
+                <meshStandardMaterial color={f.color} roughness={0.4} />
+              </mesh>
+            );
+          })}
+          <mesh>
+            <sphereGeometry args={[0.04, 12, 12]} />
+            <meshStandardMaterial color="#ffe27a" roughness={0.35} />
+          </mesh>
+        </group>
+      ))}
+
       {/* bottom tier */}
       <mesh position={[0, 0.32, 0]} castShadow>
         <cylinderGeometry args={[1.3, 1.35, 0.72, 64]} />
@@ -182,21 +278,66 @@ function Cake({ lit }: { lit: boolean }) {
         <torusGeometry args={[1.3, 0.09, 16, 64]} />
         <meshStandardMaterial color="#fff6ec" roughness={0.4} />
       </mesh>
+      {/* piped rosettes */}
+      {rosettes.map((p, i) => (
+        <group key={`r-${i}`} position={[p[0], p[1], p[2]]}>
+          <mesh>
+            <coneGeometry args={[0.085, 0.14, 12]} />
+            <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+          </mesh>
+          <mesh position={[0, -0.05, 0]}>
+            <sphereGeometry args={[0.075, 14, 14]} />
+            <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+          </mesh>
+        </group>
+      ))}
+
       {/* top tier */}
       <mesh position={[0, 1.02, 0]} castShadow>
         <cylinderGeometry args={[0.82, 0.9, 0.56, 64]} />
         <meshStandardMaterial color="#f2c3d6" roughness={0.6} />
       </mesh>
+      {/* icing drips down the top tier */}
+      {drips.map((d) => (
+        <group key={`d-${d.key}`} position={[d.x, 1.24 - d.len / 2, d.z]}>
+          <mesh>
+            <cylinderGeometry args={[0.045, 0.03, d.len, 12]} />
+            <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+          </mesh>
+          <mesh position={[0, -d.len / 2, 0]}>
+            <sphereGeometry args={[0.05, 12, 12]} />
+            <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+          </mesh>
+        </group>
+      ))}
+      {/* top cream ring */}
       <mesh position={[0, 1.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.82, 0.07, 16, 64]} />
         <meshStandardMaterial color="#fff6ec" roughness={0.4} />
       </mesh>
+      {topBerries.map((p, i) => (
+        <mesh key={`tb-${i}`} position={[p[0], p[1], p[2]]}>
+          <sphereGeometry args={[0.07, 16, 16]} />
+          <meshStandardMaterial color={i % 2 ? "#d9557a" : "#ffb0c4"} roughness={0.35} />
+        </mesh>
+      ))}
+
+      {/* berries on the bottom tier */}
       {berries.map((p, i) => (
-        <mesh key={i} position={[p[0], p[1] + 0.05, p[2]]}>
+        <mesh key={`b-${i}`} position={[p[0], p[1] + 0.05, p[2]]}>
           <sphereGeometry args={[0.09, 16, 16]} />
           <meshStandardMaterial color={i % 2 ? "#d9557a" : "#ffb0c4"} roughness={0.35} />
         </mesh>
       ))}
+
+      {/* sprinkles */}
+      {sprinkles.map((s, i) => (
+        <mesh key={`s-${i}`} position={s.pos} rotation={s.rot}>
+          <capsuleGeometry args={[0.012, 0.05, 4, 8]} />
+          <meshStandardMaterial color={s.color} roughness={0.4} />
+        </mesh>
+      ))}
+
       {/* candle */}
       <mesh position={[0, 1.5, 0]}>
         <cylinderGeometry args={[0.055, 0.055, 0.44, 24]} />
