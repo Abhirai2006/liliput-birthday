@@ -67,7 +67,7 @@ export default function AboutHer({ onOpen }: { onOpen: (s: typeof idCard) => voi
               >
                 She forgives people far too easily. People hurt her, and she hands the whole thing
                 back like it never happened. It drives me mad. It is also, annoyingly, the best thing
-                about her — 21 years in and the world hasn't managed to make her hard.
+                 about her - 21 years in and the world hasn't managed to make her hard.
               </motion.p>
             ) : (
               <button
