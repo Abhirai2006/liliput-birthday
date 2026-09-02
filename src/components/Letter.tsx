@@ -25,7 +25,7 @@ export default function Letter() {
             You never made a big deal out of being important to people. You just quietly became it.
           </p>
           <p>
-            So here's a whole website full of you — every silly photo, every video I never deleted,
+            So here's a whole website full of you - every silly photo, every video I never deleted,
             every name we invented for each other. Built by the person who counts your birthdays like
             they're his own.
           </p>
