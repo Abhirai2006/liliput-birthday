@@ -245,7 +245,26 @@ export const kidPrints: Shot[] = [
   { src: "/media/g-kid-bed.jpg", kind: "photo", caption: "Before phones, before filters, before everything.", orient: "l" },
   { src: "/media/g-kid-waterfall.jpg", kind: "photo", caption: "Sujatha akka still kept this album  ", orient: "l" },
   { src: "/media/g-kid-temple.jpg", kind: "photo", caption: "Temple steps, tiny sandals, hand held tight by her brother mankiya.", orient: "p" },
+  { src: "/media/b25-baby-print.jpg", kind: "photo", caption: "Kajal, one black dot on the cheek, red frock. Still in the plastic sleeve after twenty years.", orient: "l" },
+  { src: "/media/b25-two-prints.jpg", kind: "photo", caption: "A studio waterfall and her name printed across the bottom — AISHWARYYA, two Y's and all.", orient: "l" },
 ];
+
+/** Her 21st — sash, sparklers, one cake, September 2025. */
+export const lastBirthdayShots: Shot[] = [
+  { src: "/media/b25-cake-sash.jpg", kind: "photo", caption: "The sash, the thumbs up, the cake held like a trophy.", orient: "p" },
+  { src: "/media/b25-cake-candle.jpg", kind: "photo", caption: "Candles lit, wish loading.", orient: "p" },
+  { src: "/media/b25-clip.mp4", poster: "/media/b25-clip.jpg", kind: "video", caption: "Four seconds before the candles went out.", orient: "p" },
+  { src: "/media/b25-sparkler.jpg", kind: "photo", caption: "One sparkler in one hand, cake in the other. Fully in charge of the evening.", orient: "p" },
+  { src: "/media/b25-two-sparklers.jpg", kind: "photo", caption: "Two sparklers going at once, because one was never going to be enough.", orient: "p" },
+];
+
+/** Straight off her story — the ones that showed up on my phone and stayed. */
+export const storyShots: Shot[] = [
+  { src: "/media/b25-with-tarun.jpg", kind: "photo", caption: "Haldi on both foreheads, heads together, camera up. Ganiger family business.", orient: "p" },
+  { src: "/media/b25-pink-kurta.jpg", kind: "photo", caption: "Pink kurta, kumkum, home behind her. Posted at 2:54 in the afternoon for no reason at all.", orient: "p" },
+  { src: "/media/b25-tired-smile.jpg", kind: "photo", caption: "Chin on her hand, half asleep, smiling anyway. This one I saved.", orient: "p" },
+];
+
 
 /** The wall — pinned polaroids, straight out of the reel he sent me. */
 export const wallShots: Shot[] = [
