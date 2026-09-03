@@ -107,7 +107,9 @@ export const childhoodShots: Shot[] = [
   { src: "/media/n-kid-a.jpg", kind: "photo", caption: "Two plaits, one dress, zero doubts.", orient: "l" },
   { src: "/media/n-with-appa.jpg", kind: "photo", caption: "Held steady by her Appa. She was tiny even then.", orient: "p" },
   { src: "/media/n-kid-b.jpg", kind: "photo", caption: "The face she still makes at cameras, twenty years later.", orient: "p" },
+  { src: "/media/b25-kid-studio.jpg", kind: "photo", caption: "Studio backdrop, white and red pattu, two tiny plaits. Somebody sat her down and told her not to move.", orient: "p" },
 ];
+
 
 export const sareeShots: Shot[] = [
   { src: "/media/n-saree-b.jpg", kind: "photo", caption: "Red saree, green trees, and she knows exactly how good this looks.", orient: "p" },
