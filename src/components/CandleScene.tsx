@@ -19,39 +19,60 @@ function flicker(t: number, seed = 0) {
   );
 }
 
-/** Width of the slice taken out of the cake (radians), centred on +z (the front). */
-const WEDGE = Math.PI / 5;
-const CHOCOLATE = "#40200f";
-const GANACHE = "#5a2d17";
+/** Width of the slice taken out of the cake (radians) — kept small, a polite piece. */
+const WEDGE = Math.PI / 7;
+/** Where the cut happens — swung round to the right-back so it never touches her name. */
+const CUT_ANGLE = Math.PI * 0.62;
+/** Red velvet inside, cream between the layers, strawberry glaze running out. */
+const SPONGE = "#9c1f34";
+const CREAM = "#fff3e2";
+const SAUCE = "#d43f5c";
+/** Rotation that swings a torus gap round to the cut. */
+const RING_ROT = CUT_ANGLE - Math.PI / 2 - WEDGE / 2;
 
 /** Cylinder theta runs x = sin(t), z = cos(t); decorations were placed with x = cos(a), z = sin(a). */
 function decorInWedge(a: number) {
-  let d = Math.PI / 2 - a;
+  let d = Math.PI / 2 - a - CUT_ANGLE;
   while (d > Math.PI) d -= Math.PI * 2;
   while (d < -Math.PI) d += Math.PI * 2;
   return Math.abs(d) < WEDGE / 2 + 0.14;
 }
 
 /** The two flat radial faces exposed when a wedge is removed. */
-function CutFaces({ radius, height, y }: { radius: number; height: number; y: number }) {
+function CutFaces({
+  radius,
+  height,
+  y,
+  center = CUT_ANGLE,
+}: {
+  radius: number;
+  height: number;
+  y: number;
+  center?: number;
+}) {
   return (
     <>
-      {[WEDGE / 2, -WEDGE / 2].map((t, i) => (
+      {[center + WEDGE / 2, center - WEDGE / 2].map((t, i) => (
         <group key={i} rotation={[0, t - Math.PI / 2, 0]}>
           <mesh position={[radius / 2, y, 0]}>
             <planeGeometry args={[radius, height]} />
-            <meshStandardMaterial color={CHOCOLATE} roughness={0.55} side={2} />
+            <meshStandardMaterial color={SPONGE} roughness={0.65} side={2} />
           </mesh>
-          {/* a darker ganache band through the middle of the sponge */}
-          <mesh position={[radius / 2, y, 0.004]}>
-            <planeGeometry args={[radius, height * 0.16]} />
-            <meshStandardMaterial color={GANACHE} roughness={0.25} side={2} />
+          {/* two cream layers through the sponge */}
+          <mesh position={[radius / 2, y + height * 0.22, 0.004]}>
+            <planeGeometry args={[radius, height * 0.13]} />
+            <meshStandardMaterial color={CREAM} roughness={0.35} side={2} />
+          </mesh>
+          <mesh position={[radius / 2, y - height * 0.22, 0.004]}>
+            <planeGeometry args={[radius, height * 0.13]} />
+            <meshStandardMaterial color={CREAM} roughness={0.35} side={2} />
           </mesh>
         </group>
       ))}
     </>
   );
 }
+
 
 function Flame({ lit }: { lit: boolean }) {
   const core = useRef<Mesh>(null);
@@ -237,7 +258,7 @@ function Slurry({ active }: { active: boolean }) {
   if (!active) return null;
 
   return (
-    <group>
+    <group rotation-y={CUT_ANGLE}>
       {seeds.map((s, i) => (
         <mesh
           key={i}
@@ -247,13 +268,14 @@ function Slurry({ active }: { active: boolean }) {
           position={[s.x, 1.2, s.z]}
         >
           <sphereGeometry args={[s.r, 12, 12]} />
-          <meshStandardMaterial color={GANACHE} roughness={0.18} metalness={0.08} />
+          <meshStandardMaterial color={SAUCE} roughness={0.18} metalness={0.05} />
         </mesh>
       ))}
       {/* pool on the plate */}
       <mesh ref={pool} position={[0, -0.02, 0.75]}>
         <cylinderGeometry args={[0.42, 0.42, 0.03, 32]} />
-        <meshStandardMaterial color={CHOCOLATE} roughness={0.15} metalness={0.1} />
+        <meshStandardMaterial color={SAUCE} roughness={0.15} metalness={0.06} />
+
       </mesh>
     </group>
   );
@@ -385,15 +407,16 @@ function Cake({ lit, cut, onTap }: { lit: boolean; cut: boolean; onTap: () => vo
         </group>
       ))}
 
-      {/* chocolate inside — only ever seen through the cut */}
+      {/* red velvet inside — only ever seen through the cut */}
       <mesh position={[0, 0.32, 0]}>
         <cylinderGeometry args={[1.24, 1.29, 0.71, 48]} />
-        <meshStandardMaterial color={CHOCOLATE} roughness={0.5} />
+        <meshStandardMaterial color={SPONGE} roughness={0.65} />
       </mesh>
       <mesh position={[0, 1.02, 0]}>
         <cylinderGeometry args={[0.77, 0.85, 0.55, 48]} />
-        <meshStandardMaterial color={CHOCOLATE} roughness={0.5} />
+        <meshStandardMaterial color={SPONGE} roughness={0.65} />
       </mesh>
+
 
       {/* bottom tier */}
       <mesh position={[0, 0.32, 0]} castShadow>
@@ -402,10 +425,13 @@ function Cake({ lit, cut, onTap }: { lit: boolean; cut: boolean; onTap: () => vo
       </mesh>
       {cut && <CutFaces radius={1.32} height={0.72} y={0.32} />}
       {/* cream ring */}
-      <mesh position={[0, 0.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.3, 0.09, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
-        <meshStandardMaterial color="#fff6ec" roughness={0.4} />
-      </mesh>
+      <group rotation-y={cut ? RING_ROT : 0}>
+        <mesh position={[0, 0.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[1.3, 0.09, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
+          <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+        </mesh>
+      </group>
+
       {/* piped rosettes */}
       {rosettes.filter((r) => keep(r.a)).map((r, i) => (
         <group key={`r-${i}`} position={[r.pos[0], r.pos[1], r.pos[2]]}>
@@ -440,10 +466,13 @@ function Cake({ lit, cut, onTap }: { lit: boolean; cut: boolean; onTap: () => vo
         </group>
       ))}
       {/* top cream ring */}
-      <mesh position={[0, 1.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.82, 0.07, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
-        <meshStandardMaterial color="#fff6ec" roughness={0.4} />
-      </mesh>
+      <group rotation-y={cut ? RING_ROT : 0}>
+        <mesh position={[0, 1.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.82, 0.07, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
+          <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+        </mesh>
+      </group>
+
       {topBerries.filter((b) => keep(b.a)).map((b, i) => (
         <mesh key={`tb-${i}`} position={[b.pos[0], b.pos[1], b.pos[2]]}>
           <sphereGeometry args={[0.07, 16, 16]} />
@@ -485,61 +514,98 @@ function Cake({ lit, cut, onTap }: { lit: boolean; cut: boolean; onTap: () => vo
   );
 }
 
-/** The wedge she cut — flies out of the cake toward the screen. */
-function Slice({ cut }: { cut: boolean }) {
+/** The wedge she cut — slides out onto the plate, then gets eaten bite by bite. */
+function Slice({ cut, onBite }: { cut: boolean; onBite: (n: number) => void }) {
   const g = useRef<Group>(null);
   const p = useRef(0);
+  const bites = useRef(0);
+  const nextBite = useRef(0);
+  const pop = useRef(0);
+  const [shown, setShown] = useState(0);
+  const [gone, setGone] = useState(false);
 
   useFrame(({ clock }, delta) => {
-    if (!g.current || !cut) return;
-    p.current = Math.min(1, p.current + delta / 1.5);
+    if (!g.current || !cut || gone) return;
+    const dt = Math.min(delta, 0.05);
+    p.current = Math.min(1, p.current + dt / 1.1);
     const e = 1 - Math.pow(1 - p.current, 3);
     const t = clock.getElapsedTime();
 
-    g.current.position.set(
-      0 + Math.sin(t * 0.7) * 0.06 * e,
-      -0.35 + e * 1.0 + Math.sin(t * 1.1) * 0.05 * e,
-      1.0 + e * 2.35,
-    );
-    g.current.rotation.set(e * 0.22 + Math.sin(t * 0.6) * 0.05 * e, e * -0.5, Math.sin(t * 0.8) * 0.06 * e);
-    const s = 1 + e * 0.5;
-    g.current.scale.setScalar(s);
+    // slide out of the cake, settle on the plate beside it
+    g.current.position.set(0, -e * 0.04, e * 1.05);
+    g.current.rotation.set(e * 0.1, 0, 0);
+
+    if (p.current >= 1) {
+      if (!nextBite.current) nextBite.current = t + 0.7;
+      if (t > nextBite.current && bites.current < 4) {
+        bites.current += 1;
+        setShown(bites.current);
+        onBite(bites.current);
+        pop.current = 1;
+        nextBite.current = t + 0.85;
+        if (bites.current === 4) setGone(true);
+      }
+    }
+
+    // each bite squashes the slice a little, then it settles smaller
+    pop.current = Math.max(0, pop.current - dt * 3.5);
+    const left = [1, 0.78, 0.55, 0.3, 0][bites.current]!;
+    const squash = 1 - pop.current * 0.12;
+    const s = left * squash;
+    g.current.scale.set(s, s * (1 + pop.current * 0.08), s);
   });
 
-  if (!cut) return null;
+  if (!cut || gone) return null;
+
+  const nibbles = Array.from({ length: shown * 3 }, (_, i) => {
+    const row = Math.floor(i / 3);
+    const col = (i % 3) - 1;
+    return { x: col * 0.15, y: 1.26 - row * 0.3, key: i };
+  });
 
   return (
-    <group ref={g} position={[0, -0.35, 1.0]}>
-      {/* the wedge itself, both tiers */}
-      <mesh position={[0, 0.32, 0]} castShadow>
-        <cylinderGeometry args={[1.3, 1.35, 0.72, 24, 1, false, -WEDGE / 2, WEDGE]} />
-        <meshStandardMaterial color="#f7d9e3" roughness={0.6} side={2} />
-      </mesh>
-      <mesh position={[0, 1.02, 0]} castShadow>
-        <cylinderGeometry args={[0.82, 0.9, 0.56, 24, 1, false, -WEDGE / 2, WEDGE]} />
-        <meshStandardMaterial color="#f2c3d6" roughness={0.6} side={2} />
-      </mesh>
-      {/* chocolate faces on both cut sides */}
-      <CutFaces radius={1.32} height={0.72} y={0.32} />
-      <CutFaces radius={0.86} height={0.56} y={1.02} />
-      {/* a little cream and a berry so it reads as a slice, not a block */}
-      <mesh position={[0, 0.7, 0.95]}>
-        <sphereGeometry args={[0.11, 16, 16]} />
-        <meshStandardMaterial color="#fff6ec" roughness={0.4} />
-      </mesh>
-      <mesh position={[0, 1.34, 0.6]}>
-        <sphereGeometry args={[0.08, 16, 16]} />
-        <meshStandardMaterial color="#d9557a" roughness={0.35} />
-      </mesh>
-      {/* ganache dripping off the front edge */}
-      <mesh position={[0, 0.58, 1.0]}>
-        <sphereGeometry args={[0.07, 12, 12]} />
-        <meshStandardMaterial color={GANACHE} roughness={0.18} metalness={0.08} />
-      </mesh>
-      <Sparkles count={16} scale={[1.2, 1.4, 1.2]} size={2} speed={0.4} color="#ffd9a0" />
+    <group rotation-y={CUT_ANGLE} position={[0, -0.7, 0]}>
+      <group ref={g}>
+        {/* the wedge itself, both tiers */}
+        <mesh position={[0, 0.32, 0]} castShadow>
+          <cylinderGeometry args={[1.3, 1.35, 0.72, 24, 1, false, -WEDGE / 2, WEDGE]} />
+          <meshStandardMaterial color="#f7d9e3" roughness={0.6} side={2} />
+        </mesh>
+        <mesh position={[0, 1.02, 0]} castShadow>
+          <cylinderGeometry args={[0.82, 0.9, 0.56, 24, 1, false, -WEDGE / 2, WEDGE]} />
+          <meshStandardMaterial color="#f2c3d6" roughness={0.6} side={2} />
+        </mesh>
+        {/* red velvet faces on both cut sides */}
+        <CutFaces radius={1.32} height={0.72} y={0.32} center={0} />
+        <CutFaces radius={0.86} height={0.56} y={1.02} center={0} />
+        {/* a little cream and a berry so it reads as a slice, not a block */}
+        <mesh position={[0, 0.74, 1.24]}>
+          <sphereGeometry args={[0.1, 16, 16]} />
+          <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+        </mesh>
+        <mesh position={[0, 1.34, 0.72]}>
+          <sphereGeometry args={[0.07, 16, 16]} />
+          <meshStandardMaterial color="#d9557a" roughness={0.35} />
+        </mesh>
+        {/* bite marks — scalloped dents in the sponge, one set per bite */}
+        {nibbles.map((n) => (
+          <mesh key={n.key} position={[n.x, n.y, 0.74]}>
+            <sphereGeometry args={[0.11, 14, 14]} />
+            <meshStandardMaterial color={SPONGE} roughness={0.75} />
+          </mesh>
+        ))}
+        {/* glaze on the front edge */}
+        <mesh position={[0, 0.6, 1.26]}>
+          <sphereGeometry args={[0.06, 12, 12]} />
+          <meshStandardMaterial color={SAUCE} roughness={0.18} metalness={0.05} />
+        </mesh>
+        {/* crumbs */}
+        <Sparkles count={14} scale={[0.9, 1.2, 0.9]} size={1.6} speed={0.5} color="#ffd9a0" />
+      </group>
     </group>
   );
 }
+
 
 /** A knife she can pick up with a finger or the cursor and drag into the cake. */
 function Knife({
