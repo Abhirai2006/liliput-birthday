@@ -19,39 +19,60 @@ function flicker(t: number, seed = 0) {
   );
 }
 
-/** Width of the slice taken out of the cake (radians), centred on +z (the front). */
-const WEDGE = Math.PI / 5;
-const CHOCOLATE = "#40200f";
-const GANACHE = "#5a2d17";
+/** Width of the slice taken out of the cake (radians) — kept small, a polite piece. */
+const WEDGE = Math.PI / 7;
+/** Where the cut happens — swung round to the right-back so it never touches her name. */
+const CUT_ANGLE = Math.PI * 0.62;
+/** Red velvet inside, cream between the layers, strawberry glaze running out. */
+const SPONGE = "#9c1f34";
+const CREAM = "#fff3e2";
+const SAUCE = "#d43f5c";
+/** Rotation that swings a torus gap round to the cut. */
+const RING_ROT = CUT_ANGLE - Math.PI / 2 - WEDGE / 2;
 
 /** Cylinder theta runs x = sin(t), z = cos(t); decorations were placed with x = cos(a), z = sin(a). */
 function decorInWedge(a: number) {
-  let d = Math.PI / 2 - a;
+  let d = Math.PI / 2 - a - CUT_ANGLE;
   while (d > Math.PI) d -= Math.PI * 2;
   while (d < -Math.PI) d += Math.PI * 2;
   return Math.abs(d) < WEDGE / 2 + 0.14;
 }
 
 /** The two flat radial faces exposed when a wedge is removed. */
-function CutFaces({ radius, height, y }: { radius: number; height: number; y: number }) {
+function CutFaces({
+  radius,
+  height,
+  y,
+  center = CUT_ANGLE,
+}: {
+  radius: number;
+  height: number;
+  y: number;
+  center?: number;
+}) {
   return (
     <>
-      {[WEDGE / 2, -WEDGE / 2].map((t, i) => (
+      {[center + WEDGE / 2, center - WEDGE / 2].map((t, i) => (
         <group key={i} rotation={[0, t - Math.PI / 2, 0]}>
           <mesh position={[radius / 2, y, 0]}>
             <planeGeometry args={[radius, height]} />
-            <meshStandardMaterial color={CHOCOLATE} roughness={0.55} side={2} />
+            <meshStandardMaterial color={SPONGE} roughness={0.65} side={2} />
           </mesh>
-          {/* a darker ganache band through the middle of the sponge */}
-          <mesh position={[radius / 2, y, 0.004]}>
-            <planeGeometry args={[radius, height * 0.16]} />
-            <meshStandardMaterial color={GANACHE} roughness={0.25} side={2} />
+          {/* two cream layers through the sponge */}
+          <mesh position={[radius / 2, y + height * 0.22, 0.004]}>
+            <planeGeometry args={[radius, height * 0.13]} />
+            <meshStandardMaterial color={CREAM} roughness={0.35} side={2} />
+          </mesh>
+          <mesh position={[radius / 2, y - height * 0.22, 0.004]}>
+            <planeGeometry args={[radius, height * 0.13]} />
+            <meshStandardMaterial color={CREAM} roughness={0.35} side={2} />
           </mesh>
         </group>
       ))}
     </>
   );
 }
+
 
 function Flame({ lit }: { lit: boolean }) {
   const core = useRef<Mesh>(null);
