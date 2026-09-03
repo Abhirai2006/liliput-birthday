@@ -258,7 +258,7 @@ function Slurry({ active }: { active: boolean }) {
   if (!active) return null;
 
   return (
-    <group>
+    <group rotation-y={CUT_ANGLE}>
       {seeds.map((s, i) => (
         <mesh
           key={i}
@@ -268,13 +268,14 @@ function Slurry({ active }: { active: boolean }) {
           position={[s.x, 1.2, s.z]}
         >
           <sphereGeometry args={[s.r, 12, 12]} />
-          <meshStandardMaterial color={GANACHE} roughness={0.18} metalness={0.08} />
+          <meshStandardMaterial color={SAUCE} roughness={0.18} metalness={0.05} />
         </mesh>
       ))}
       {/* pool on the plate */}
       <mesh ref={pool} position={[0, -0.02, 0.75]}>
         <cylinderGeometry args={[0.42, 0.42, 0.03, 32]} />
-        <meshStandardMaterial color={CHOCOLATE} roughness={0.15} metalness={0.1} />
+        <meshStandardMaterial color={SAUCE} roughness={0.15} metalness={0.06} />
+
       </mesh>
     </group>
   );
@@ -406,15 +407,16 @@ function Cake({ lit, cut, onTap }: { lit: boolean; cut: boolean; onTap: () => vo
         </group>
       ))}
 
-      {/* chocolate inside — only ever seen through the cut */}
+      {/* red velvet inside — only ever seen through the cut */}
       <mesh position={[0, 0.32, 0]}>
         <cylinderGeometry args={[1.24, 1.29, 0.71, 48]} />
-        <meshStandardMaterial color={CHOCOLATE} roughness={0.5} />
+        <meshStandardMaterial color={SPONGE} roughness={0.65} />
       </mesh>
       <mesh position={[0, 1.02, 0]}>
         <cylinderGeometry args={[0.77, 0.85, 0.55, 48]} />
-        <meshStandardMaterial color={CHOCOLATE} roughness={0.5} />
+        <meshStandardMaterial color={SPONGE} roughness={0.65} />
       </mesh>
+
 
       {/* bottom tier */}
       <mesh position={[0, 0.32, 0]} castShadow>
@@ -423,10 +425,13 @@ function Cake({ lit, cut, onTap }: { lit: boolean; cut: boolean; onTap: () => vo
       </mesh>
       {cut && <CutFaces radius={1.32} height={0.72} y={0.32} />}
       {/* cream ring */}
-      <mesh position={[0, 0.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.3, 0.09, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
-        <meshStandardMaterial color="#fff6ec" roughness={0.4} />
-      </mesh>
+      <group rotation-y={cut ? RING_ROT : 0}>
+        <mesh position={[0, 0.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[1.3, 0.09, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
+          <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+        </mesh>
+      </group>
+
       {/* piped rosettes */}
       {rosettes.filter((r) => keep(r.a)).map((r, i) => (
         <group key={`r-${i}`} position={[r.pos[0], r.pos[1], r.pos[2]]}>
@@ -461,10 +466,13 @@ function Cake({ lit, cut, onTap }: { lit: boolean; cut: boolean; onTap: () => vo
         </group>
       ))}
       {/* top cream ring */}
-      <mesh position={[0, 1.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.82, 0.07, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
-        <meshStandardMaterial color="#fff6ec" roughness={0.4} />
-      </mesh>
+      <group rotation-y={cut ? RING_ROT : 0}>
+        <mesh position={[0, 1.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.82, 0.07, 16, 64, cut ? Math.PI * 2 - WEDGE : Math.PI * 2]} />
+          <meshStandardMaterial color="#fff6ec" roughness={0.4} />
+        </mesh>
+      </group>
+
       {topBerries.filter((b) => keep(b.a)).map((b, i) => (
         <mesh key={`tb-${i}`} position={[b.pos[0], b.pos[1], b.pos[2]]}>
           <sphereGeometry args={[0.07, 16, 16]} />
