@@ -280,7 +280,7 @@ function Cake({ lit, onTap }: { lit: boolean; onTap: () => void }) {
         </group>
       ))}
 
-      {/* red velvet inside — only ever seen through the cut */}
+      {/* red velvet inside the tiers */}
       <mesh position={[0, 0.32, 0]}>
         <cylinderGeometry args={[1.24, 1.29, 0.71, 48]} />
         <meshStandardMaterial color={SPONGE} roughness={0.65} />
