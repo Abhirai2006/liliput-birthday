@@ -14,6 +14,7 @@ import Lightbox from "@/components/Lightbox";
 import SingingPlayer from "@/components/SingingPlayer";
 import AgeReveal from "@/components/AgeReveal";
 import CoverSheet from "@/components/CoverSheet";
+import PasswordGate, { GATE_KEY } from "@/components/PasswordGate";
 import {
   chapters,
   newChapters,
@@ -26,6 +27,8 @@ import {
   callShots,
   wallShots,
   singShots,
+  lastBirthdayShots,
+  storyShots,
 
   type Shot,
 } from "@/lib/media";
@@ -59,19 +62,27 @@ export const Route = createFileRoute("/")({
 const SEAL_ENABLED = false;
 
 function BirthdayPage() {
-  const [state, setState] = useState<"loading" | "locked" | "open">(
-    SEAL_ENABLED ? "loading" : "open",
-  );
+  const [state, setState] = useState<"loading" | "locked" | "gate" | "open">("loading");
   const [lit, setLit] = useState(true);
   const [shot, setShot] = useState<Shot | null>(null);
   const [wrapped, setWrapped] = useState(true);
 
   useEffect(() => {
-    if (!SEAL_ENABLED) return;
-    setState(msUntilBirthday() <= 0 || hasPreviewKey() ? "open" : "locked");
+    if (SEAL_ENABLED && msUntilBirthday() > 0 && !hasPreviewKey()) {
+      setState("locked");
+      return;
+    }
+    let passed = false;
+    try {
+      passed = window.localStorage.getItem(GATE_KEY) === "1";
+    } catch {
+      passed = false;
+    }
+    setState(passed ? "open" : "gate");
   }, []);
 
-  const unlock = useCallback(() => setState("open"), []);
+  const unlock = useCallback(() => setState("gate"), []);
+  const openGate = useCallback(() => setState("open"), []);
 
   const celebrate = useCallback(() => {
     setWrapped(false);
@@ -111,6 +122,10 @@ function BirthdayPage() {
 
   if (state === "locked") {
     return <LockScreen onUnlock={unlock} />;
+  }
+
+  if (state === "gate") {
+    return <PasswordGate onOpen={openGate} />;
   }
 
   return (
@@ -230,7 +245,7 @@ function BirthdayPage() {
 
         <Chapter
           title="Misty"
-          note="The dog who gets more of her attention than any human alive, and deserves it."
+          note="Daa's dog on paper. Hers in every photo — he gets more of her attention than any human alive, and deserves it."
           shots={mistyShots}
           onOpen={setShot}
         />
@@ -239,6 +254,20 @@ function BirthdayPage() {
           title="Our calls"
           note="Screenshots she doesn't know I took. Half of them mid-sentence, all of them at some ridiculous hour."
           shots={callShots}
+          onOpen={setShot}
+        />
+
+        <Chapter
+          title="Her 21st, September 2025"
+          note="Last year's one — sash, cake, and two sparklers going at once because one was never going to be enough."
+          shots={lastBirthdayShots}
+          onOpen={setShot}
+        />
+
+        <Chapter
+          title="Straight off her story"
+          note="The ones that showed up on my phone, got saved, and never got deleted."
+          shots={storyShots}
           onOpen={setShot}
         />
 

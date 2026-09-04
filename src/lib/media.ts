@@ -123,8 +123,8 @@ export const sareeShots: Shot[] = [
 ];
 
 export const mistyShots: Shot[] = [
-  { src: "/media/n-dog-a.jpg", kind: "photo", caption: "Misty. Official cuddle partner, her words.", orient: "p" },
-  { src: "/media/n-dog-b.jpg", kind: "photo", caption: "Somebody is getting all her attention and it isn't her daa papa.", orient: "p" },
+  { src: "/media/n-dog-a.jpg", kind: "photo", caption: "Misty — Daa's dog, but you would never guess it from her.", orient: "p" },
+  { src: "/media/n-dog-b.jpg", kind: "photo", caption: "Chiranth owns him. She just borrowed him permanently.", orient: "p" },
   { src: "/media/n-dog-c.jpg", kind: "photo", caption: "This is what she sends instead of replying.", orient: "l" },
 ];
 
