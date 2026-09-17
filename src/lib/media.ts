@@ -262,7 +262,7 @@ export const lastBirthdayShots: Shot[] = [
 export const storyShots: Shot[] = [
   { src: "/media/b25-with-tarun.jpg", kind: "photo", caption: "Haldi on both foreheads, heads together, camera up. Ganiger family business.", orient: "p" },
   { src: "/media/b25-pink-kurta.jpg", kind: "photo", caption: "Pink kurta, kumkum, home behind her. Posted at 2:54 in the afternoon for no reason at all.", orient: "p" },
-  { src: "/media/b25-tired-smile.jpg", kind: "photo", caption: "Chin on her hand, half asleep, smiling anyway. This one I saved.", orient: "p" },
+  { src: "/media/b25-tired-smile.jpg", kind: "photo", caption: "Chin on her hand, When she was fully sad", orient: "p" },
 ];
 
 
