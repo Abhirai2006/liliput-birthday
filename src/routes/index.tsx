@@ -258,8 +258,8 @@ function BirthdayPage() {
         />
 
         <Chapter
-          title="Her 21st, September 2025"
-          note="Last year's one — sash, cake, and two sparklers going at once because one was never going to be enough."
+          title="Her 20th, Bday 2025"
+          note="Last year's one — sash, cake, and a sparkler and all of her."
           shots={lastBirthdayShots}
           onOpen={setShot}
         />
