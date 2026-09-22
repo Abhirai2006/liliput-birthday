@@ -307,6 +307,7 @@ export const augChapters: { title: string; note: string; shots: Shot[] }[] = [
       { src: "/media/n-temple.jpg", kind: "photo", caption: "Belagavi stone and a bell taller than her.", orient: "l" },
       { src: "/media/g-point.jpg", kind: "photo", caption: "Pointing at something off-camera. Never told me what.", orient: "p" },
       { src: "/media/g-silhouette.jpg", kind: "photo", caption: "Outline against the last bit of daylight.", orient: "l" },
+      { src: "/media/b25-one-more-piece.jpg", kind: "photo", caption: "One more piece, and stomach saying please.", orient: "p" },
 
     ],
   },
