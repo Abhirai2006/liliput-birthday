@@ -87,7 +87,7 @@ export default function PasswordGate({ onOpen }: { onOpen: () => void }) {
           autoComplete="off"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="your mother's sister, plus a y"
+          placeholder="who it's from — one word, no space"
           className="w-full rounded-xl border border-border bg-card/50 px-5 py-4 text-center font-hand text-2xl tracking-wide text-foreground outline-none backdrop-blur-sm transition placeholder:font-sans placeholder:text-sm placeholder:tracking-[0.2em] placeholder:text-muted-foreground focus:border-primary"
         />
         <button
@@ -98,7 +98,7 @@ export default function PasswordGate({ onOpen }: { onOpen: () => void }) {
           {busy ? "checking" : "open it"}
         </button>
         <p className="mt-5 min-h-5 text-center text-sm text-accent">
-          {wrong ? "not it. think the sibling of a parent — then end it with a y." : ""}
+          {wrong ? "not it. \"from\" + the name you've called me since you were tiny." : ""}
         </p>
       </motion.form>
 
