@@ -6,6 +6,7 @@ const schema = z.object({ password: z.string().max(200) });
 export const verifyGate = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {
-    const { checkGate } = await import("./gate.server");
-    return { ok: checkGate(data.password) };
+    const { levelFor } = await import("./gate.server");
+    const level = levelFor(data.password);
+    return { ok: level !== null, level };
   });
