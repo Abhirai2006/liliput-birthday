@@ -7,6 +7,20 @@ export type Shot = {
   orient: "p" | "l";
 };
 
+/** Who is looking: guest sees nothing of hers, family a trimmed set, her everything. */
+export type Audience = "guest" | "family" | "her";
+
+/** Shots that stay between the two of them — never rendered for family or guests. */
+const familyHidden = new Set(["/media/n-with-appa.jpg", "/media/b25-with-tarun.jpg"]);
+
+export function shotsFor(level: Audience, shots: Shot[]): Shot[] {
+  if (level === "her") return shots;
+  if (level === "guest") return [];
+  return shots.filter((s) => !familyHidden.has(s.src));
+}
+
+
+
 export const idCard: Shot = {
   src: "/media/school-ids.jpg",
   kind: "photo",
