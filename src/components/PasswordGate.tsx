@@ -3,14 +3,24 @@ import { motion } from "motion/react";
 import { useServerFn } from "@tanstack/react-start";
 import StarField from "./StarField";
 import { verifyGate } from "@/lib/gate.functions";
+import type { Audience } from "@/lib/media";
 
 export const GATE_KEY = "subbi-gate";
 
-export default function PasswordGate({ onOpen }: { onOpen: () => void }) {
+export default function PasswordGate({ onOpen }: { onOpen: (level: Audience) => void }) {
   const verify = useServerFn(verifyGate);
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(false);
   const [wrong, setWrong] = useState(false);
+
+  const enter = (level: Audience) => {
+    try {
+      window.localStorage.setItem(GATE_KEY, level);
+    } catch {
+      /* private mode — she'll just type it again */
+    }
+    onOpen(level);
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,13 +29,8 @@ export default function PasswordGate({ onOpen }: { onOpen: () => void }) {
     setWrong(false);
     try {
       const res = await verify({ data: { password: value } });
-      if (res.ok) {
-        try {
-          window.localStorage.setItem(GATE_KEY, "1");
-        } catch {
-          /* private mode — she'll just type it again */
-        }
-        onOpen();
+      if (res.ok && res.level) {
+        enter(res.level);
         return;
       }
       setWrong(true);
@@ -101,6 +106,18 @@ export default function PasswordGate({ onOpen }: { onOpen: () => void }) {
           {wrong ? "not it. \"from\" + the name you've called me since you were tiny." : ""}
         </p>
       </motion.form>
+
+      <p className="mt-2 max-w-xs text-center text-xs leading-relaxed text-muted-foreground">
+        Family have their own word.
+      </p>
+
+      <button
+        type="button"
+        onClick={() => enter("guest")}
+        className="mt-6 text-[0.65rem] uppercase tracking-[0.35em] text-muted-foreground underline underline-offset-4 transition hover:text-foreground"
+      >
+        just looking around
+      </button>
 
       <p className="mt-6 max-w-xs text-center text-xs leading-relaxed text-muted-foreground">
         If you're not Subbi, this page isn't for you.
