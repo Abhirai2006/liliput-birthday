@@ -215,7 +215,7 @@ function BirthdayPage() {
           <>
         <AgeReveal />
 
-        <AboutHer onOpen={setShot} />
+        <AboutHer onOpen={setShot} family={level === "family"} />
 
         <Chapter
           title="Before she was Subbi"

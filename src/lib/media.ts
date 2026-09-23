@@ -1,3 +1,5 @@
+import familyMainAsset from "@/assets/aishwarya-family-main.png.asset.json";
+
 export type Shot = {
   src: string;
   kind: "photo" | "video";
@@ -11,7 +13,13 @@ export type Shot = {
 export type Audience = "guest" | "family" | "her";
 
 /** Shots that stay between the two of them — never rendered for family or guests. */
-const familyHidden = new Set(["/media/n-with-appa.jpg", "/media/b25-with-tarun.jpg"]);
+const familyHidden = new Set([
+  "/media/n-with-appa.jpg",
+  "/media/b25-with-tarun.jpg",
+  "/media/nv-scooter.mp4",
+  "/media/g-sr-party.jpg",
+  "/media/b25-one-more-piece.jpg",
+]);
 
 export function shotsFor(level: Audience, shots: Shot[]): Shot[] {
   if (level === "her") return shots;
@@ -26,6 +34,13 @@ export const idCard: Shot = {
   kind: "photo",
   caption: "10th. PU. Engineering. The same eyes in all three.",
   orient: "l",
+};
+
+export const familyMain: Shot = {
+  src: familyMainAsset.url,
+  kind: "photo",
+  caption: "Aishwarya, from the family album.",
+  orient: "p",
 };
 
 export const chapters: { title: string; note: string; shots: Shot[] }[] = [

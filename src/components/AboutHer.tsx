@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { idCard } from "@/lib/media";
+import { familyMain, idCard, type Shot } from "@/lib/media";
 
 const LINES = [
   "Aishwarya Mahesh Teli.",
@@ -9,10 +9,11 @@ const LINES = [
   "And that one person she decided to call Pappa.",
 ];
 
-export default function AboutHer({ onOpen }: { onOpen: (s: typeof idCard) => void }) {
+export default function AboutHer({ onOpen, family = false }: { onOpen: (s: Shot) => void; family?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [revealed, setRevealed] = useState(false);
+  const mainShot = family ? familyMain : idCard;
 
   return (
     <section ref={ref} className="mx-auto w-full max-w-5xl px-5 py-20 sm:py-28">
@@ -85,16 +86,16 @@ export default function AboutHer({ onOpen }: { onOpen: (s: typeof idCard) => voi
           animate={inView ? { opacity: 1, scale: 1, rotate: -1.5 } : { opacity: 0, scale: 0.94, rotate: 3 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="frame-photo cursor-zoom-in"
-          onClick={() => onOpen(idCard)}
+          onClick={() => onOpen(mainShot)}
         >
           <img
-            src={idCard.src}
-            alt={idCard.caption}
+            src={mainShot.src}
+            alt={mainShot.caption}
             loading="lazy"
             className="block h-auto w-full rounded-[1px]"
           />
           <p className="px-1 pb-1 pt-2 font-hand text-lg leading-tight text-night-deep">
-            {idCard.caption}
+            {mainShot.caption}
           </p>
         </motion.div>
       </div>
