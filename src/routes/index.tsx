@@ -29,7 +29,8 @@ import {
   singShots,
   lastBirthdayShots,
   storyShots,
-
+  shotsFor,
+  type Audience,
   type Shot,
 } from "@/lib/media";
 import { hasPreviewKey, msUntilBirthday } from "@/lib/birthday";
@@ -63,6 +64,7 @@ const SEAL_ENABLED = false;
 
 function BirthdayPage() {
   const [state, setState] = useState<"loading" | "locked" | "gate" | "open">("loading");
+  const [level, setLevel] = useState<Audience>("her");
   const [lit, setLit] = useState(true);
   const [shot, setShot] = useState<Shot | null>(null);
   const [wrapped, setWrapped] = useState(true);
@@ -72,17 +74,25 @@ function BirthdayPage() {
       setState("locked");
       return;
     }
-    let passed = false;
+    let saved: string | null = null;
     try {
-      passed = window.localStorage.getItem(GATE_KEY) === "1";
+      saved = window.localStorage.getItem(GATE_KEY);
     } catch {
-      passed = false;
+      saved = null;
     }
-    setState(passed ? "open" : "gate");
+    if (saved === "her" || saved === "family" || saved === "guest") {
+      setLevel(saved);
+      setState("open");
+      return;
+    }
+    setState("gate");
   }, []);
 
   const unlock = useCallback(() => setState("gate"), []);
-  const openGate = useCallback(() => setState("open"), []);
+  const openGate = useCallback((lvl: Audience) => {
+    setLevel(lvl);
+    setState("open");
+  }, []);
 
   const celebrate = useCallback(() => {
     setWrapped(false);
@@ -128,6 +138,10 @@ function BirthdayPage() {
     return <PasswordGate onOpen={openGate} />;
   }
 
+  const isHer = level === "her";
+  const isGuest = level === "guest";
+  const pick = (shots: Shot[]) => shotsFor(level, shots);
+
   return (
     <>
       {wrapped ? <CoverSheet onDone={celebrate} /> : null}
@@ -137,7 +151,7 @@ function BirthdayPage() {
       </div>
 
       {/* playful side nickname — tucked low, easy to miss */}
-      <div className="pointer-events-none fixed bottom-3 right-4 z-30">
+      <div className={`pointer-events-none fixed bottom-3 right-4 z-30 ${isHer ? "" : "hidden"}`}>
         <span className="font-hand text-sm tracking-[0.25em] text-primary/25">
           Huch Aish
         </span>
@@ -151,7 +165,7 @@ function BirthdayPage() {
             transition={{ duration: 1.2 }}
             className="text-[0.65rem] uppercase tracking-[0.45em] text-primary"
           >
-            18 September · she turns 21
+            {isGuest ? "18 September · a birthday page" : "18 September · she turns 21"}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 26 }}
@@ -160,7 +174,7 @@ function BirthdayPage() {
             className="mt-5 text-5xl leading-[1.05] text-glow sm:text-7xl"
           >
             Happy Birthday,
-            <span className="block italic text-primary">Subbi</span>
+            <span className="block italic text-primary">{isGuest ? "to you" : "Subbi"}</span>
           </motion.h1>
 
           <Suspense fallback={<div className="h-[380px] w-full sm:h-[460px]" />}>
@@ -177,11 +191,28 @@ function BirthdayPage() {
             className="mt-2 max-w-md font-hand text-2xl text-candle-soft"
           >
             {lit
-              ? "One candle, one wish. Take your time, lilliput."
-              : "Wish made. Now scroll — the whole night is about you."}
+              ? isGuest
+                ? "One candle, one wish. Go on — blow it out."
+                : "One candle, one wish. Take your time, lilliput."
+              : isGuest
+                ? "Wish made. The rest of this page is private."
+                : "Wish made. Now scroll — the whole night is about you."}
           </motion.p>
         </section>
 
+        {isGuest ? (
+          <section className="mx-auto w-full max-w-xl px-5 py-24 text-center">
+            <p className="text-[0.65rem] uppercase tracking-[0.4em] text-primary">the rest is private</p>
+            <h2 className="mt-5 text-3xl italic sm:text-4xl">This part is only for her</h2>
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              The photos, the videos, the letter — all of it sits behind a word only a few people
+              know. You are welcome to the cake and the candle.
+            </p>
+          </section>
+        ) : null}
+
+        {isGuest ? null : (
+          <>
         <AgeReveal />
 
         <AboutHer onOpen={setShot} />
@@ -189,97 +220,111 @@ function BirthdayPage() {
         <Chapter
           title="Before she was Subbi"
           note="Ainapur, two plaits, and a girl who already knew how to pose. These are the oldest photos I have of her."
-          shots={childhoodShots}
+          shots={pick(childhoodShots)}
           onOpen={setShot}
         />
 
         <Chapter
           title="The printed ones"
           note="Real photographs, from before anything was on a phone. Somebody kept these in a frame for twenty years."
-          shots={kidPrints}
+          shots={pick(kidPrints)}
           onOpen={setShot}
         />
 
         <Chapter
           title="College"
           note="Uniforms, ID cards, back benches, and the physics teacher she actually liked."
-          shots={schoolShots}
+          shots={pick(schoolShots)}
           onOpen={setShot}
         />
 
         {chapters.map((c) => (
-          <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
+          <Chapter key={c.title} title={c.title} note={c.note} shots={pick(c.shots)} onOpen={setShot} />
         ))}
 
         {newChapters.map((c) => (
-          <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
+          <Chapter key={c.title} title={c.title} note={c.note} shots={pick(c.shots)} onOpen={setShot} />
         ))}
 
         {augChapters.map((c) => (
-          <Chapter key={c.title} title={c.title} note={c.note} shots={c.shots} onOpen={setShot} />
+          <Chapter key={c.title} title={c.title} note={c.note} shots={pick(c.shots)} onOpen={setShot} />
         ))}
 
         <Chapter
           title="Six I keep coming back to"
           note="No theme, no year, no reason — just the six photos I open first every time I go looking."
-          shots={wallShots}
+          shots={pick(wallShots)}
           onOpen={setShot}
         />
 
         <Chapter
           title="Saree days"
           note="Traditional day at college, festivals at home, temples in Belagavi. This is the version of her that North Karnataka made."
-          shots={sareeShots}
+          shots={pick(sareeShots)}
           onOpen={setShot}
         />
 
         <Chapter
           title="The one who sings"
           note="Half the time she doesn't know she's doing it — a line of some sad song, under her breath, in the middle of a sentence."
-          shots={singShots}
+          shots={pick(singShots)}
           onOpen={setShot}
         />
 
         <SingingPlayer />
 
 
+        {isHer ? (
+          <>
         <Chapter
           title="Misty"
           note="Daa's dog on paper. Hers in every photo — he gets more of her attention than any human alive, and deserves it."
-          shots={mistyShots}
+          shots={pick(mistyShots)}
           onOpen={setShot}
         />
 
         <Chapter
           title="Our calls"
           note="Screenshots she doesn't know I took. Half of them mid-sentence, all of them at some ridiculous hour."
-          shots={callShots}
+          shots={pick(callShots)}
           onOpen={setShot}
         />
+          </>
+        ) : null}
 
         <Chapter
           title="Her 20th, Bday 2025"
           note="Last year's one — sash, cake, and a sparkler and all of her."
-          shots={lastBirthdayShots}
+          shots={pick(lastBirthdayShots)}
           onOpen={setShot}
         />
 
         <Chapter
           title="Straight off her story"
           note="The ones that showed up on my phone, got saved, and never got deleted."
-          shots={storyShots}
+          shots={pick(storyShots)}
           onOpen={setShot}
         />
 
-        <DaaSection onOpen={setShot} />
-        <UsSection onOpen={setShot} />
-        <Remember />
-        <Letter />
+        {isHer ? (
+          <>
+            <DaaSection onOpen={setShot} />
+            <UsSection onOpen={setShot} />
+            <Remember />
+            <Letter />
+          </>
+        ) : null}
+          </>
+        )}
 
 
         <footer className="px-5 pb-16 text-center">
           <p className="font-hand text-2xl text-muted-foreground">
-            made in the dark, at 00:00 IST, for one short girl from Ainapur
+            {isGuest
+              ? "made in the dark, at 00:00 IST"
+              : isHer
+                ? "made in the dark, at 00:00 IST, for one short girl from Ainapur"
+                : "made in the dark, at 00:00 IST, for Aishwarya — from all of us"}
           </p>
         </footer>
       </main>
