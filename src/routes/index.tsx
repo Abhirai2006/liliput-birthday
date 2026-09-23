@@ -205,7 +205,7 @@ function BirthdayPage() {
             <p className="text-[0.65rem] uppercase tracking-[0.4em] text-primary">the rest is private</p>
             <h2 className="mt-5 text-3xl italic sm:text-4xl">This part is only for her</h2>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              The photos, the videos, the letter — all of it sits behind a word only a few people
+              The photos, the videos, the letter - all of it sits behind a word only a few people
               know. You are welcome to the cake and the candle.
             </p>
           </section>
