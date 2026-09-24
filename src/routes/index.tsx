@@ -93,6 +93,14 @@ function BirthdayPage() {
     setLevel(lvl);
     setState("open");
   }, []);
+  const switchWord = useCallback(() => {
+    try {
+      window.localStorage.removeItem(GATE_KEY);
+    } catch {
+      /* private mode */
+    }
+    setState("gate");
+  }, []);
 
   const celebrate = useCallback(() => {
     setWrapped(false);
