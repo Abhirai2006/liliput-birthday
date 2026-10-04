@@ -1,4 +1,4 @@
-# Wonderland — A Birthday Experience for Subbi
+# Wonderland - A Birthday Experience for Subbi
 
 A private, interactive birthday website created for **Aishwarya “Subbi” Teli** and her 21st birthday on 18 September. It combines a cinematic night-sky presentation, an interactive 3D cake, carefully curated memories, voice recordings, and audience-specific access in one mobile-first experience.
 
