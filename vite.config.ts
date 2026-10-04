@@ -38,7 +38,7 @@ export default defineConfig({
     // Keep the Three.js graph out of Vite's dev pre-bundle. Re-optimization can
     // otherwise invalidate CandleScene's generated chunk while the page is open.
     optimizeDeps: {
-      exclude: ["three", "@react-three/fiber", "@react-three/drei"],
+      exclude: ["three"],
     },
   },
 });
