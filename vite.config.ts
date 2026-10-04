@@ -35,5 +35,10 @@ export default defineConfig({
   },
   vite: {
     plugins: [stripSourceTagsFrom3D()],
+    // Keep the Three.js graph out of Vite's dev pre-bundle. Re-optimization can
+    // otherwise invalidate CandleScene's generated chunk while the page is open.
+    optimizeDeps: {
+      exclude: ["three"],
+    },
   },
 });

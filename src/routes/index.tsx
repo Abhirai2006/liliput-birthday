@@ -15,6 +15,7 @@ import SingingPlayer from "@/components/SingingPlayer";
 import AgeReveal from "@/components/AgeReveal";
 import CoverSheet from "@/components/CoverSheet";
 import PasswordGate, { GATE_KEY } from "@/components/PasswordGate";
+import { Button } from "@/components/ui/button";
 import {
   chapters,
   newChapters,
@@ -334,6 +335,14 @@ function BirthdayPage() {
                 ? "made in the dark, at 00:00 IST, for one short girl from Ainapur"
                 : "made in the dark, at 00:00 IST, for Aishwarya — from all of us"}
           </p>
+          <Button
+            type="button"
+            variant="link"
+            onClick={switchWord}
+            className="mt-5 h-auto px-2 py-1 text-[0.65rem] uppercase tracking-[0.3em] text-muted-foreground hover:text-primary"
+          >
+            switch word
+          </Button>
         </footer>
       </main>
 
