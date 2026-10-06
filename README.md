@@ -21,8 +21,8 @@ The same URL supports three carefully separated experiences. The selected versio
 | Version | Access | Content |
 | --- | --- | --- |
 | **Guest** | Select **Just looking around** | Stars, opening sequence, cake, candle, confetti, and a privacy notice. No personal photos or videos are rendered. |
-| **Family** | Family-safe story and media collection, with private people, calls, memories, and selected photos excluded. Uses a dedicated family-album main image. |
-| **Her** | Complete experience with every chapter, photo, video, recording, personal memory, and letter. |
+| **Family** | Enter `..........` | Family-safe story and media collection, with private people, calls, memories, and selected photos excluded. Uses a dedicated family-album main image. |
+| **Her** | Enter `.........` | Complete experience with every chapter, photo, video, recording, personal memory, and letter. |
 
 Password matching is handled on the server so the access words are not included in the browser bundle. Media filtering is centralized by audience level, and excluded items are not rendered for that version.
 
